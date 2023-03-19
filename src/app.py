@@ -5,5 +5,5 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-   return render_template("prueba.html")
+   return render_template("prueba2.html")
 

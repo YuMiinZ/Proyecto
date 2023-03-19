@@ -40,22 +40,35 @@
 }
 
 .inicio-de-sesin{
-    color: var(--congress-blue);
-    font-family: var(--font-family-montserrat);
-    font-size: 4000;
-    font-weight: 600;
-    letter-spacing: 0;
-    line-height: normal;
-    min-height: 92px;
+    position: absolute;
     width: 531px;
+    height: 92px;
+    left: 813px;
+    top: 203px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 78px;
+
+    color: #004879;
 }
 
 .direccion-de-correo-electronico{
-    letter-spacing: 0;
-    line-height: normal;
-    margin-top: 53px;
-    min-height: 31px;
+    position: absolute;
     width: 491px;
+    height: 31px;
+    left: 813px;
+    top: 348px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 34px;
+
+    color: #000000;
 }
 
 .overlap-group{
@@ -122,46 +135,22 @@
     padding: 6.8px 12.1px;
 }
 
-.image1{
-    height: 17px;
-    object-fit: cover;
-    width: 28px;
-}
-
-.contrasenia{
-    letter-spacing: 0;
-    line-height: normal;
-    margin-top: 41px;
-    min-height: 30px;
-    width: 354px;
-}
-
-.overlap-group2{
-    align-self: center;
-    border-radius: 20px;
-    height: 66px;
-    margin-right: 54px;
-    margin-top: 64px;
-    position: relative;
-    width: 406px;
-}
-
-.iniciar-sesin{
-    left: 28px;
-    letter-spacing: 0;
-    line-height: normal;
+.image-button {
+    background-image: url("{{url_for('static', filename='images/Group 1.png')}}");
     position: absolute;
-    text-align: center;
-    top: 11px;
-    width: 350px;
-}
+    width: 50.99px;
+    height: 50.4px;
+    left: 1263.9px;
+    top: 535.98px;
+    z-index: 2;
+  }
 
-.rectangle-38{
-    background-color: var(--congress-blue);
-    cursor: pointer;
-    height: 66px;
-    width: 406px;
-}
+
+
+
+
+
+
 
 .x309113-1 {
     height: 419px;
@@ -170,6 +159,95 @@
 }
 
 
-.group-3 input{
-    width: 100%;
+
+
+.correo-electronico{
+    position: absolute;
+    width: 491px;
+    height: 31px;
+    left: 813px;
+    top: 348px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 34px;
+
+    color: #000000;
 }
+
+.contrasenia{
+    position: absolute;
+    width: 354.06px;
+    height: 30.26px;
+    left: 813px;
+    top: 468.64px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 34px;
+
+    color: #000000;
+}
+
+.boton-iniciar-sesion{
+    position: absolute;
+    width: 406.27px;
+    height: 65.82px;
+    left: 855.37px;
+    top: 623.73px;
+
+    background: #004879;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 49px;
+    text-align: center;
+    color:white
+}
+
+.boton-registrar-usuario{
+    position: absolute;
+    width: 406.27px;
+    height: 65.82px;
+    left: 855.37px;
+    top: 719.82px;
+
+    background: #004879;
+    border-radius: 20px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 49px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.form-input[type="email"] {
+    position: absolute;
+    width: 491px;
+    height: 31.02px;
+    left: 813px;
+    top: 393.74px;
+
+    background: #D9D9D9;
+    border-radius: 20px;
+}
+
+.form-input[type="password"] {
+    position: absolute;
+    width: 491px;
+    height: 31.02px;
+    left: 813px;
+    top: 529.17px;
+    background: #D9D9D9;
+    border-radius: 20px;
+  }
