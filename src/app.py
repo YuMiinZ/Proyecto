@@ -5,5 +5,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-   return render_template("prueba2.html")
+   return render_template("login.html")
+   
+
+@app.route("/login", methods=['POST'])
+def login():
+   email = request.form['email']
+   password = request.form['password']
+
+   if 'submit-login' in request.form:
+      return render_template('prueba.html')
+   elif 'submit-register' in request.form:
+      return render_template('prueba3.html')
+
 
