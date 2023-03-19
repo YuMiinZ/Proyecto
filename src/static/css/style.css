@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,500,600");
+
+.iniciar-sesion{
+    align-items: center;
+    background-color: #e6f4f1;
+    border: 1px none;
+    display: flex;
+    flex-direction: column;
+    gap: 98px;
+    height: 867.22px;
+    width: 1561px;
+}
+
+.hidden,
+.hidden * {
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.group-1{
+    height: 105px;
+    width: 1561px;
+}
+
+.flex-row{
+    align-items: flex-end;
+    display: flex;
+    gap: 267px;
+    height: 583px;
+    margin-right: 120px;
+    min-width: 1275px;
+}
+
+.group-3{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 583px;
+    width: 545px;
+}
+
+.inicio-de-sesin{
+    color: var(--congress-blue);
+    font-family: var(--font-family-montserrat);
+    font-size: 4000;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    min-height: 92px;
+    width: 531px;
+}
+
+.direccion-de-correo-electronico{
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: 53px;
+    min-height: 31px;
+    width: 491px;
+}
+
+.overlap-group{
+    height: 34px;
+    margin-top: 15px;
+    position: relative;
+    width: 491px;
+}
+
+.ejemplo-juanpereze{
+    color: var(--black);
+    font-family: var(--font-family-montserrat);
+    font-size: var(--font-size-xs);
+    font-weight: 300;
+    left: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+    top: 6px;
+    width: 465px;
+}
+
+.iniciar-sesion .rectangle{
+    border-radius: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.rectangle-36{
+    background-color: var(--alto);
+    height: 31px;
+    width: 491px;
+}
+
+.overlap-group3{
+    align-items: flex-start;
+    align-self: center;
+    background-color: var(--congress-blue);
+    border-radius: 20px;
+    display: flex;
+    margin-right: 54px;
+    margin-top: 30px;
+    min-width: 406px;
+    padding: 11.3px 28px;
+}
+
+.registrar-usuario{
+    letter-spacing: 0;
+    line-height: normal;
+    min-height: 43px;
+    text-align: center;
+    width: 350px;
+}
+
+.overlap-group1{
+    align-items: flex-end;
+    background-color: var(--alto);
+    border-radius: 20px;
+    display: flex;
+    height: 31px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    min-width: 491px;
+    padding: 6.8px 12.1px;
+}
+
+.image1{
+    height: 17px;
+    object-fit: cover;
+    width: 28px;
+}
+
+.contrasenia{
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: 41px;
+    min-height: 30px;
+    width: 354px;
+}
+
+.overlap-group2{
+    align-self: center;
+    border-radius: 20px;
+    height: 66px;
+    margin-right: 54px;
+    margin-top: 64px;
+    position: relative;
+    width: 406px;
+}
+
+.iniciar-sesin{
+    left: 28px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 11px;
+    width: 350px;
+}
+
+.rectangle-38{
+    background-color: var(--congress-blue);
+    cursor: pointer;
+    height: 66px;
+    width: 406px;
+}
+
+.x309113-1 {
+    height: 419px;
+    margin-bottom: 24.64px;
+    width: 463px;
+}
+
+
+.group-3 input{
+    width: 100%;
+}
