@@ -1,14 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PetStay.Pages
 {
-    public class PrivacyModel : PageModel
+    public class AnuncioModel : PageModel
+    {
+        public List<Anuncio> Anuncios { get; set; }
+
+        public void OnGet()
+        {
+            // cargar los datos de los anuncios desde alguna fuente de datos
+            // y luego asignarlos a la propiedad Anuncios
+        }
+    }
+
+    public class Anuncio
     {
         public string TipoAnuncio { get; set; }
         public string UrlImagen { get; set; }
@@ -17,14 +27,5 @@ namespace PetStay.Pages
         public string PublicadoPor { get; set; }
         public string Contacto { get; set; }
         public string UrlDetalles { get; set; }
-
-        // Agregamos la propiedad Model
-        public PrivacyModel Model { get; set; }
-
-        public void OnGet()
-        {
-            // Asignamos la instancia actual a la propiedad Model
-            Model = this;
-        }
     }
 }
