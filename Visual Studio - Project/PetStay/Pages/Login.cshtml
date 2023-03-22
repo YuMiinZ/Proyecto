@@ -1,0 +1,30 @@
+@page
+@model PetStay.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div style="display: flex;justify-content: space-between;margin-top: 70px;">
+            <img class="anuncio-img" src="~/images/petlogo.svg"/>
+            <div class="box-credenciales">
+
+                <h1 style="margin-top: 2%; color:#004879">Inicio de sesión</h1>
+                
+                <div style="margin-bottom: 5%;">
+
+                    <h3 style="margin-top: 10%;">Dirección de correo electrónico:</h3>
+
+                    <input class="login-entry"/>
+                    <h3 style="margin-top: 10%;">Contraseña</h3>
+
+                    <input class="login-entry"/>
+ 
+                </div>
+                <button class="btn-accept" type="submit">Iniciar sesión</button>
+                <a style="margin-top: 30px;font-size: 20px; color: #004879" asp-area="" asp-controller="Registro" asp-action="Index">Registrar nuevo usuario</a>
+
+            </div>
+
+
+</div>

@@ -69,3 +69,70 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+
+.top-nav-bar{
+  background-color: #399197;
+  border-radius: 0 0 10px 10px
+}
+
+.cont-formulario{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.btn-accept {
+  padding: 20px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #004879;
+  -webkit-text-fill-color: white;
+}
+
+.box-credenciales {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.error{
+  color: red;
+  font-size: 22px;
+}
+
+.login-entry {
+  background-color: #0048791c;
+  border-radius: 10px;
+  font-size: 24px;
+  width: 395px; 
+}
+
+.form-entry {
+  background-color: #0048791c;
+  border-radius: 10px;
+  font-size: 18px;
+}
+.cubi-nav-bar{
+  background-color: #299CCB;
+  border-radius: 0 0 10px 10px
+}
+
+.bar-text {
+  color: white;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-left: 25px;
+}
+
+.top-menu {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 40px
+}
+
+.search-bar{
+  border-radius: 18px;
+  padding: 5px;
+  max-width: 305px;
+  margin-top: 50px;
+}

@@ -1,0 +1,59 @@
+@page
+@model PetStay.Pages.RegistroModel
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100">
+            <form action="completarRegistro" method="post" class="login100-form validate-form">
+                <span class="login100-form-logo">
+                    <i class="zmdi zmdi-landscape"></i>
+                </span>
+
+                <title>Registro</title>
+                <h1 style="color:#004879">Registro de usuario </h1>
+
+                <h2>
+                    Por favor proporciona los siguientes datos para poder realizar el registro.
+                </h2>
+                <div class="cont-formulario">
+                    <img class="anuncio-img" src="~/images/petlogo.svg" />
+
+                    <div style="display: flex;flex-direction: column;">
+                        <div class="wrap-input100 validate-input " data-validate="Nombre">
+                            <h3 style="font-size: 20px;">Nombre</h3><br>
+                            <input class="input100 form-entry" type="text" size="40" name="nombre">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Apellidos </h3><br>
+                            <input class="input100 form-entry" type="text" size="40" name="primerApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Dirección de correo electrónico:</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Contraseña:</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Confirmar contraseña:</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+                        <button style="align-self: center;" class="btn-accept">Registrar usuario</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
