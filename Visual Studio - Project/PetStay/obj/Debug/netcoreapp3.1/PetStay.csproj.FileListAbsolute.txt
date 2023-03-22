@@ -43,3 +43,4 @@ C:\Users\yumii\Desktop\TEC\2023\I Semestre\Diseño de Software\Proyecto\Visual S
 C:\Users\yumii\Desktop\TEC\2023\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\PetStay.genruntimeconfig.cache
 C:\Users\yumii\Desktop\TEC\2023\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\Razor\Pages\Anuncio.cshtml.g.cs
 C:\Users\yumii\Desktop\TEC\2023\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\PetStay.csproj.AssemblyReference.cache
+C:\Users\yumii\Desktop\TEC\2023\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\Registro de servicios.cshtml.g.cs
