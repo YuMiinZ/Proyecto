@@ -46,7 +46,7 @@ create table Solicitud(
     distrito varchar(45) not null,
     telefonoPrincipal varchar(45) not null,
     telefonoSecundario varchar(45) not null,
-    imgDocIdentificacion blob not null,
+    imgDocIdentificacion longblob not null,
     idTipoServicio int not null,
     idEstado int not null,
     foreign key (idEstado) references Estado (idEstado),
@@ -58,7 +58,7 @@ create table Anuncio(
     titulo varchar(45) not null,
     descripcion varchar(200) not null,
     medioContacto varchar(100) not null,
-    imgAnuncio blob not null,
+    imgAnuncio longblob not null,
     idTipoAnuncio int not null,
     idUsuario int not null,
     idEstado int not null,
@@ -360,6 +360,14 @@ begin
     end if;
 end//
 CALL crudSolicitud(1, NULL, 'Juan Perez', 123456789, 'San Jose', 'Escazu', 'San Rafael', '8888-8888', '7777-7777', NULL, 1,1);
+select @@secure_file_priv
+
+set @img = LOAD_FILE('C:/Users/yumii/OneDrive/Escritorio/TEC/I Semestre/Diseño de Software/Proyecto/Visual Studio - Project/PetStay/wwwroot/images/puppy.png');
+set @img = load_file('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/prueba 2.jpg');
+select @img;
+
+CALL crudSolicitud(1, null, 'Juan Perez', 123456789, 'San Jose', 'Escazu', 'San Rafael', '8888-8888', '8888-8889', 
+LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/prueba.png'), 1, 1);
 
 #7. Anuncio
 #Opcion 1: Insertar

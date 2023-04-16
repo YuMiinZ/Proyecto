@@ -1,6 +1,8 @@
 ﻿@page
 @model PrivacyModel
 @{
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
     ViewData["Title"] = "Privacy Policy";
 }
 
@@ -9,7 +11,7 @@
     <div class="anuncio-header">
         <span class="anuncio-type">Anuncio</span>
     </div>
-    <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" alt="Anuncios" />
+    <img class="anuncio-img" src="data:image;base64,@Convert.ToBase64String(Model.Image)" alt="Anuncios" />
     <div class="anuncio-details">
         <div class="anuncio-title">Perro en adopción</div>
         <div class="anuncio-description">Perro de raza pequeña, desparasitado</div>
@@ -151,14 +153,14 @@
         right: -40px;
     }
 
-        .anuncio-button a {
-            display: inline-block;
-            width: 90px;
-            height: 20px;
-            text-align: center;
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 12px;
-        }
+    .anuncio-button a {
+        display: inline-block;
+        width: 90px;
+        height: 20px;
+        text-align: center;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+    }
 </style>

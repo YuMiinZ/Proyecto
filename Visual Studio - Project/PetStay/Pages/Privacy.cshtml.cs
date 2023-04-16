@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MySqlConnector;
 
 namespace PetStay.Pages
 {
@@ -18,6 +19,8 @@ namespace PetStay.Pages
         public string Contacto { get; set; }
         public string UrlDetalles { get; set; }
 
+        public byte[] Image { get; set; }
+
         // Agregamos la propiedad Model
         public PrivacyModel Model { get; set; }
 
@@ -25,6 +28,16 @@ namespace PetStay.Pages
         {
             // Asignamos la instancia actual a la propiedad Model
             Model = this;
+            using var connection = new MySqlConnection("Server=localhost;Port=3306;Database=PetStay;Uid=root;Pwd=1234;");
+            connection.Open();
+
+            var command = new MySqlCommand("SELECT imgDocIdentificacion FROM Solicitud WHERE idSolicitud = 1", connection);
+
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                Image = (byte[])reader["imgDocIdentificacion"];
+            }
         }
     }
 }
