@@ -136,3 +136,45 @@ body {
   max-width: 305px;
   margin-top: 50px;
 }
+
+.filter {
+  background-color: #00497902;
+  border-radius: 10px;
+  font-size: 24px;
+  width: 240px;
+  color: #004879; 
+}
+
+.anuncio-container {
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 2px 6px 12px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.anuncio-header {
+  height: 60px;
+  background: #C94938;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  align-items: center;
+
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+.btn-masinfo {
+  padding: 20px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: white;
+  
+}
+.btn-masinfo:hover {
+  color: #fff;
+  background-color: #399197;
+}
