@@ -7,6 +7,11 @@ use PetStay;
 
 #Creación de tablas
 
+create table Estado(
+	idEstado int primary key not null auto_increment,
+	nombre varchar(50) not null
+);
+
 create table TipoUsuario(
 	idTipoUsuario int primary key not null auto_increment,
     nombre varchar(45) not null
@@ -41,8 +46,10 @@ create table Solicitud(
     distrito varchar(45) not null,
     telefonoPrincipal varchar(45) not null,
     telefonoSecundario varchar(45) not null,
-    imgDocIdentificacion blob not null,
+    imgDocIdentificacion longblob not null,
     idTipoServicio int not null,
+    idEstado int not null,
+    foreign key (idEstado) references Estado (idEstado),
     foreign key (idTipoServicio) references TipoServicio(idTipoServicio)
 );
 
@@ -51,9 +58,11 @@ create table Anuncio(
     titulo varchar(45) not null,
     descripcion varchar(200) not null,
     medioContacto varchar(100) not null,
-    imgAnuncio blob not null,
+    imgAnuncio longblob not null,
     idTipoAnuncio int not null,
     idUsuario int not null,
+    idEstado int not null,
+    foreign key (idEstado) references Estado (idEstado),
     foreign key (idTipoAnuncio) references TipoAnuncio(idTipoAnuncio),
     foreign key (idUsuario) references Usuario(idUsuario)
 );
@@ -64,13 +73,56 @@ create table Comentario(
     fecha date not null,
     idUsuario int not null,
     idAnuncio int not null,
+    idEstado int not null,
+    foreign key (idEstado) references Estado (idEstado),
     foreign key (idAnuncio) references Anuncio(idAnuncio),
     foreign key (idUsuario) references Usuario(idUsuario)
 );
 
 #CRUDS
 
-#1. TipoUsuario
+#1. Estado
+#Opcion 1: Insertar
+#Opcion 2: Actualizar todo
+#Opcion 3: Mostrar todo
+delimiter //
+create procedure crudEstado(in opcion int, in idEstado int, in nombre varchar(50))
+begin
+	if(opcion is null) then
+		signal sqlstate '45000' set message_text = 'Debe de ingresar una opcion.';
+    elseif(nombre is null or nombre='') then
+		signal sqlstate '45000' set message_text = 'El nombre no puede estar vacio.';
+	elseif (opcion=1) then
+		if(select count(*) from Estado where Estado.nombre=nombre)>0 then
+			signal sqlstate '45000' set message_text = 'El nombre del estado ingresada ya existe en la BD';
+		else 
+			start transaction;
+			insert into Estado (nombre) values (nombre);
+			commit;
+		end if;
+	elseif(opcion=2) then
+		if(idEstado is null) then
+			signal sqlstate '45000' set message_text = 'Debe de ingresar el id del estado.';
+        elseif (select count(*) from Estado where Estado.idEstado=idEstado)=0 then
+			signal sqlstate '45000' set message_text = 'No se encontro el id del estado.';
+		else
+			start transaction;
+			update Estado set nombre=nombre where Estado.idEstado=idEstado;
+            commit;
+        end if;
+	elseif(opcion=3) then
+		start transaction;
+		select * from Estado;
+        commit;
+	else 
+		signal sqlstate '45000' set message_text = 'Opcion invalida.';
+    end if;
+end//
+CALL crudEstado(1, null, 'Activo');
+CALL crudEstado(1, null, 'Rechazado');
+CALL crudEstado(1, null, 'Inactivo');
+
+#2. TipoUsuario
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
@@ -113,7 +165,7 @@ call crudTipoUsuario(1, null, 'Administrador');
 call crudTipoUsuario(1, null, 'Usuario');
 
 
-#2. TipoAnuncio
+#3. TipoAnuncio
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
@@ -153,7 +205,7 @@ end//
 CALL crudTipoAnuncio(1, null, 'Adopción');
 CALL crudTipoAnuncio(1, null, 'Servicios');
 
-#3. TipoServicio
+#4. TipoServicio
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
@@ -175,7 +227,7 @@ begin
 	elseif(opcion=2) then
 		if(idTipoServicio is null) then
 			signal sqlstate '45000' set message_text = 'Debe ingresar el id del tipo de servicio.';
-		elseif(select count(*) from TipoServicio where idTipoServicio=idTipoServicio)=0 then
+		elseif(select count(*) from TipoServicio where TipoServicio.idTipoServicio=idTipoServicio)=0 then
 			signal sqlstate '45000' set message_text = 'No se encontro el id del tipo de servicio.';
 		else
 			start transaction;
@@ -193,7 +245,7 @@ end//
 CALL crudTipoServicio(1, null, 'Cuidado de Mascotas');
 CALL crudTipoServicio(1, null, 'Hospedaje');
 
-#4. Usuario
+#5. Usuario
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
@@ -213,7 +265,7 @@ begin
         signal sqlstate '45000' set message_text = 'La contrasenia no puede estar vacia.';
     elseif(idTipoUsuario is null) then
         signal sqlstate '45000' set message_text = 'El id del tipo de usuario no puede estar vacio.';
-	elseif(select count(*) from TipoServicio where idTipoServicio=idTipoServicio)=0 then
+	elseif(select count(*) from TipoServicio where TipoServicio.idTipoServicio=idTipoServicio)=0 then
         signal sqlstate '45000' set message_text = 'No se encontro el id del tipo de servicio.';
     elseif(opcion=1) then
         if(select count(*) from Usuario where Usuario.correo=correo)>0 then
@@ -243,14 +295,17 @@ begin
         signal sqlstate '45000' set message_text = 'Opcion invalida.';
     end if;
 end//
-CALL crudUsuario(1, null, 'Juan', 'Perez', 'juan.perez@gmail.com', '123456', 1);
+CALL crudUsuario(1, null, 'Juan', 'Perez', 'juan.perez@gmail.com', 'admin', 1);
+CALL crudUsuario(1, null, 'Melany', 'Salas', 'melany.salas@gmail.com', 'user', 2);
 
-#5. Solicitud
+#6. Solicitud
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
 delimiter //
-create procedure crudSolicitud(in opcion int, in idSolicitud int, in nombre varchar(45), in cedula int, in provincia varchar(45), in canton varchar(45), in distrito varchar(45), in telefonoPrincipal varchar(45), in telefonoSecundario varchar(45), in imgDocIdentificacion blob, in idTipoServicio int)
+create procedure crudSolicitud(in opcion int, in idSolicitud int, in nombre varchar(45), in cedula int, in provincia varchar(45), 
+in canton varchar(45), in distrito varchar(45), in telefonoPrincipal varchar(45), in telefonoSecundario varchar(45), 
+in imgDocIdentificacion blob, in idTipoServicio int, in idEstado int)
 begin
     if(opcion is null) then
         signal sqlstate '45000' set message_text = 'Debe ingresar una opcion.';
@@ -272,20 +327,28 @@ begin
         signal sqlstate '45000' set message_text = 'La imagen de documento de identificacion no puede estar vacia.';
     elseif(idTipoServicio is null) then
         signal sqlstate '45000' set message_text = 'El id del tipo de servicio no puede estar vacio.';
-    elseif(select count(*) from TipoServicio where idTipoServicio=idTipoServicio)=0 then
+    elseif(select count(*) from TipoServicio where TipoServicio.idTipoServicio=idTipoServicio)=0 then
         signal sqlstate '45000' set message_text = 'No se encontro el id del tipo de servicio.';
+	elseif(idEstado is null) then
+		signal sqlstate '45000' set message_text = 'El id del estado no puede ser nulo.';
+	elseif(select count(*) from Estado where Estado.idEstado=idEstado)=0 then
+		signal sqlstate '45000' set message_text = 'El id del estado no existe.';
     elseif(opcion=1) then
 		start transaction;
-		insert into Solicitud (nombre, cedula, provincia, canton, distrito, telefonoPrincipal, telefonoSecundario, imgDocIdentificacion, idTipoServicio) values (nombre, cedula, provincia, canton, distrito, telefonoPrincipal, telefonoSecundario, imgDocIdentificacion, idTipoServicio);
+		insert into Solicitud (nombre, cedula, provincia, canton, distrito, telefonoPrincipal, telefonoSecundario, 
+        imgDocIdentificacion, idTipoServicio, idEstado) values (nombre, cedula, provincia, canton, distrito, telefonoPrincipal, 
+        telefonoSecundario, imgDocIdentificacion, idTipoServicio, idEstado);
 		commit;
     elseif(opcion=2) then
         if(idSolicitud is null) then
             signal sqlstate '45000' set message_text = 'Debe ingresar el id de la solicitud.';
-        elseif(select count(*) from Solicitud where idSolicitud=idSolicitud)=0 then
+        elseif(select count(*) from Solicitud where Solicitud.idSolicitud=idSolicitud)=0 then
             signal sqlstate '45000' set message_text = 'No se encontro el id de la solicitud.';
         else
             start transaction;
-            update Solicitud set nombre=nombre, cedula=cedula, provincia=provincia, canton=canton, distrito=distrito, telefonoPrincipal=telefonoPrincipal, telefonoSecundario=telefonoSecundario, imgDocIdentificacion=imgDocIdentificacion, idTipoServicio=idTipoServicio where Solicitud.idSolicitud=idSolicitud;
+            update Solicitud set nombre=nombre, cedula=cedula, provincia=provincia, canton=canton, distrito=distrito, 
+            telefonoPrincipal=telefonoPrincipal, telefonoSecundario=telefonoSecundario, imgDocIdentificacion=imgDocIdentificacion, 
+            idTipoServicio=idTipoServicio, idEstado=idEstado where Solicitud.idSolicitud=idSolicitud;
             commit;
         end if;
     elseif(opcion=3) then
@@ -296,9 +359,17 @@ begin
         signal sqlstate '45000' set message_text = 'Opcion invalida.';
     end if;
 end//
-CALL crudSolicitud(1, NULL, 'Juan Perez', 123456789, 'San Jose', 'Escazu', 'San Rafael', '8888-8888', '7777-7777', NULL, 1);
+CALL crudSolicitud(1, NULL, 'Juan Perez', 123456789, 'San Jose', 'Escazu', 'San Rafael', '8888-8888', '7777-7777', NULL, 1,1);
+select @@secure_file_priv
 
-#6. Anuncio
+set @img = LOAD_FILE('C:/Users/yumii/OneDrive/Escritorio/TEC/I Semestre/Diseño de Software/Proyecto/Visual Studio - Project/PetStay/wwwroot/images/puppy.png');
+set @img = load_file('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/prueba 2.jpg');
+select @img;
+
+CALL crudSolicitud(1, null, 'Juan Perez', 123456789, 'San Jose', 'Escazu', 'San Rafael', '8888-8888', '8888-8889', 
+LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/prueba.png'), 1, 1);
+
+#7. Anuncio
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
@@ -306,7 +377,7 @@ CALL crudSolicitud(1, NULL, 'Juan Perez', 123456789, 'San Jose', 'Escazu', 'San 
 delimiter //
 create procedure crudAnuncio(
     in opcion int, in idAnuncio int, in titulo varchar(45), in descripcion varchar(200), in medioContacto varchar(100),
-    in imgAnuncio blob, in idTipoAnuncio int, in idUsuario int
+    in imgAnuncio blob, in idTipoAnuncio int, in idUsuario int, in idEstado int
 )
 begin
     if(opcion is null) then
@@ -321,26 +392,31 @@ begin
         signal sqlstate '45000' set message_text = 'La imagen del anuncio no puede estar vacia.';
     elseif(idTipoAnuncio is null) then
         signal sqlstate '45000' set message_text = 'El id del tipo de anuncio no puede estar vacio.';
-    elseif(select count(*) from TipoAnuncio where idTipoAnuncio=idTipoAnuncio)=0 then
+    elseif(select count(*) from TipoAnuncio where TipoAnuncio.idTipoAnuncio=idTipoAnuncio)=0 then
         signal sqlstate '45000' set message_text = 'No se encontro el id del tipo de anuncio.';
     elseif(idUsuario is null) then
         signal sqlstate '45000' set message_text = 'El id del usuario no puede estar vacio.';
-    elseif(select count(*) from Usuario where idUsuario=idUsuario)=0 then
+    elseif(select count(*) from Usuario where Usuario.idUsuario=idUsuario)=0 then
         signal sqlstate '45000' set message_text = 'No se encontro el id del usuario.';
+	elseif(idEstado is null) then
+		signal sqlstate '45000' set message_text = 'El id del estado no puede ser nulo.';
+	elseif(select count(*) from Estado where Estado.idEstado=idEstado)=0 then
+		signal sqlstate '45000' set message_text = 'El id del estado no existe.';
     elseif(opcion=1) then
         start transaction;
-        insert into Anuncio (titulo, descripcion, medioContacto, imgAnuncio, idTipoAnuncio, idUsuario) values 
-        (titulo, descripcion, medioContacto, imgAnuncio, idTipoAnuncio, idUsuario);
+        insert into Anuncio (titulo, descripcion, medioContacto, imgAnuncio, idTipoAnuncio, idUsuario, idEstado) values 
+        (titulo, descripcion, medioContacto, imgAnuncio, idTipoAnuncio, idUsuario, idEstado);
         commit;
     elseif(opcion=2) then
         if(idAnuncio is null) then
             signal sqlstate '45000' set message_text = 'Debe ingresar el id del anuncio.';
-        elseif(select count(*) from Anuncio where idAnuncio=idAnuncio)=0 then
+        elseif(select count(*) from Anuncio where Anuncio.idAnuncio=idAnuncio)=0 then
             signal sqlstate '45000' set message_text = 'No se encontro el id del anuncio.';
         else
             start transaction;
             update Anuncio set titulo=titulo, descripcion=descripcion, medioContacto=medioContacto, 
-            imgAnuncio=imgAnuncio, idTipoAnuncio=idTipoAnuncio, idUsuario=idUsuario where Anuncio.idAnuncio=idAnuncio;
+            imgAnuncio=imgAnuncio, idTipoAnuncio=idTipoAnuncio, idUsuario=idUsuario, idEstado=idEstado
+            where Anuncio.idAnuncio=idAnuncio;
             commit;
         end if;
     elseif(opcion=3) then
@@ -350,27 +426,27 @@ begin
     elseif(opcion=4) then
         if(idAnuncio is null) then
             signal sqlstate '45000' set message_text = 'Debe ingresar el id del anuncio.';
-        elseif(select count(*) from Anuncio where idAnuncio=idAnuncio)=0 then
+        elseif(select count(*) from Anuncio where Anuncio.idAnuncio=idAnuncio)=0 then
             signal sqlstate '45000' set message_text = 'No se encontro el id del anuncio.';
         else
             start transaction;
-            delete from Anuncio where Anuncio.idAnuncio=idAnuncio;
+            update Anuncio set idEstado=idEstado where Anuncio.idAnuncio=idAnuncio;
             commit;
         end if;
     else
         signal sqlstate '45000' set message_text = 'Opcion invalida.';
     end if;
 end//
-CALL crudAnuncio(1, 1, 'Perrito en Adopción', 'Perro raza pequeña, desparacitado', '(+506) 7894 6543', NULL, 1, 1);
+CALL crudAnuncio(1, 1, 'Perrito en Adopción', 'Perro raza pequeña, desparacitado', '(+506) 7894 6543', NULL, 1, 1,1);
 
-#7. Comentario
+#8. Comentario
 #Opcion 1: Insertar
 #Opcion 2: Actualizar todo
 #Opcion 3: Mostrar todo
 #Opcion 4: Eliminar
 delimiter //
 create procedure crudComentario(in opcion int, in idComentario int, in texto varchar(200), in fecha date, 
-in idUsuario int, in idAnuncio int)
+in idUsuario int, in idAnuncio int, in idEstado int)
 begin
     if(opcion is null) then
         signal sqlstate '45000' set message_text = 'Debe ingresar una opcion.';
@@ -382,24 +458,28 @@ begin
         signal sqlstate '45000' set message_text = 'El id del usuario no puede estar vacio.';
     elseif(idAnuncio is null) then
         signal sqlstate '45000' set message_text = 'El id del anuncio no puede estar vacio.';
-	elseif(select count(*) from Anuncio where idAnuncio=idAnuncio)=0 then
+	elseif(select count(*) from Anuncio where Anuncio.idAnuncio=idAnuncio)=0 then
         signal sqlstate '45000' set message_text = 'No se encontro el id del anuncio.';
-    elseif(select count(*) from Usuario where idUsuario=idUsuario)=0 then
+    elseif(select count(*) from Usuario where Usuario.idUsuario=idUsuario)=0 then
         signal sqlstate '45000' set message_text = 'No se encontro el id del usuario.';
+	elseif(idEstado is null) then
+		signal sqlstate '45000' set message_text = 'El id del estado no puede ser nulo.';
+	elseif(select count(*) from Estado where Estado.idEstado=idEstado)=0 then
+		signal sqlstate '45000' set message_text = 'El id del estado no existe.';
     elseif(opcion=1) then
         start transaction;
-        insert into Comentario (texto, fecha, idUsuario, idAnuncio) values 
-        (texto, fecha, idUsuario, idAnuncio);
+        insert into Comentario (texto, fecha, idUsuario, idAnuncio, idEstado) values 
+        (texto, fecha, idUsuario, idAnuncio, idEstado);
         commit;
     elseif(opcion=2) then
         if(idComentario is null) then
             signal sqlstate '45000' set message_text = 'Debe ingresar el id del comentario.';
-        elseif(select count(*) from Comentario where idComentario=idComentario)=0 then
+        elseif(select count(*) from Comentario where Comentario.idComentario=idComentario)=0 then
             signal sqlstate '45000' set message_text = 'No se encontro el id del comentario.';
         else
             start transaction;
             update Comentario set texto=texto, fecha=fecha, idUsuario=idUsuario, 
-            idAnuncio=idAnuncio where idComentario=idComentario;
+            idAnuncio=idAnuncio, idEstado=idEstado where idComentario=idComentario;
             commit;
         end if;
     elseif(opcion=3) then
@@ -409,15 +489,15 @@ begin
     elseif(opcion=4) then
         if(idComentario is null) then
             signal sqlstate '45000' set message_text = 'Debe ingresar el id del comentario.';
-        elseif(select count(*) from Comentario where idComentario=idComentario)=0 then
+        elseif(select count(*) from Comentario where Comentario.idComentario=idComentario)=0 then
             signal sqlstate '45000' set message_text = 'No se encontro el id del comentario.';
         else
             start transaction;
-            delete from Comentario where idComentario=idComentario;
+            update Comentario set idEstado=idEstado where Comentario.idComentario=idComentario;
             commit;
         end if;
     else
         signal sqlstate '45000' set message_text = 'Opcion invalida.';
     end if;
 end//
-CALL crudComentario(1, null, 'Este es un comentario de prueba', CURDATE(), 1, 1);
+CALL crudComentario(1, null, 'Este es un comentario de prueba', CURDATE(), 1, 1,1);
