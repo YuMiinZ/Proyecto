@@ -11,18 +11,20 @@
 
                 <h1 style="margin-top: 2%; color:#004879">Inicio de sesión</h1>
                 
-                <div style="margin-bottom: 5%;">
+                <div style="margin-bottom: 2%;">
 
                     <h3 style="margin-top: 10%;">Dirección de correo electrónico:</h3>
 
                     <input class="login-entry"/>
                     <h3 style="margin-top: 10%;">Contraseña</h3>
 
-                    <input class="login-entry"/>
- 
+                    <input class="login-entry"/><br>
+
                 </div>
-                <button class="btn-accept" type="submit">Iniciar sesión</button>
-                <a style="margin-top: 30px;font-size: 20px; color: #004879" asp-area="" asp-controller="Registro" asp-action="Index">Registrar nuevo usuario</a>
+                <a asp-page="/RecuperarContrasena" style="margin-bottom: 25px;font-size: 20px; color: #004879">¿Olvidó la contraseña?</a>
+
+                <a asp-page="/User" class="btn-accept" type="submit">Iniciar sesión</a>
+                <a style="margin-top: 30px;font-size: 20px; color: #004879" asp-page="/Registro">Registrar nuevo usuario</a>
 
             </div>
 

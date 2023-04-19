@@ -1,0 +1,35 @@
+@page
+@model PetStay.Pages.CrearPublicacionModel
+@{
+    ViewData["Title"] = "CrearPublicacion";
+}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div>
+
+
+            <title>Detalles</title>
+            <h1 style="color:#004879">Crear nueva publicación</h1>
+
+            <div class="cont-formulario">
+                <div class="info-container">
+
+                    <h2>Título</h2>
+                    <input style="width: 130%" class="form-entry" />
+
+                    <h3>Descripción</h3>
+                    <input style="width: 185%;height: 150px;" class="form-entry" />
+
+                </div>
+                <div class="container-subida">
+                    <img class="anuncio-img" src="@Url.Content("~/images/subir.svg")" />
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: flex-end;margin-top: 50px;">
+            <button class="btn-accept">Crear publicación</button>
+        </div>
+        
+    </div>
+</div>

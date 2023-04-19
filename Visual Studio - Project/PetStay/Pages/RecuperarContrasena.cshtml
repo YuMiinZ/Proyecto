@@ -1,0 +1,30 @@
+@page
+@model PetStay.Pages.RecuperarContrasenaModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div style="display: flex;justify-content: space-between;margin-top: 70px;">
+            <img class="anuncio-img" src="~/images/petlogo.svg"/>
+            <div class="box-credenciales">
+
+                <h1 style="margin-top: 2%; color:#004879">Recuperación de contraseña</h1>
+                
+                <div style="margin-bottom: 2%;">
+                    <h3 style="margin-top: 10%;">Nombre asociado</h3>
+
+                    <input class="login-entry"/><br>
+                    <h3 style="margin-top: 10%;">Dirección de correo electrónico</h3>
+
+                    <input class="login-entry"/>
+
+
+                </div>
+
+                <a asp-page="/User" style="margin-top: 45px;" class="btn-accept" type="submit">Recuperar contraseña</a>
+
+            </div>
+
+
+</div>

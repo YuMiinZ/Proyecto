@@ -1,0 +1,86 @@
+@page
+@model PetStay.Pages.RegistroServicioModel
+@{
+    ViewData["Title"] = "RegistroServicio";
+}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100">
+            <form >
+                <span class="login100-form-logo">
+                    <i class="zmdi zmdi-landscape"></i>
+                </span>
+
+                <title>Registro</title>
+                <h1 style="color:#004879">Registro de usuario </h1>
+
+                <h2>
+                    Por favor proporciona los siguientes datos para poder realizar el registro.
+                </h2>
+                <div class="cont-formulario">
+                    <div style="display: flex;flex-direction: column;">
+                        <div class="wrap-input100 validate-input " data-validate="Nombre">
+                            <h3 style="font-size: 20px;">Nombre</h3><br>
+                            <input class="input100 form-entry" type="text" size="40" name="nombre">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Cédula</h3><br>
+                            <input class="input100 form-entry" type="text" size="40" name="primerApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Provincia</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Cantón</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Distrito</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <div class="wrap-input100 validate-input " data-validate="Nombre">
+                            <h3 style="font-size: 20px;">Tipo de servicio</h3><br>
+                            <select class=" input100 form-entry" style="padding: 4px;width: 100%;" name="info" id="filtro">
+
+                                <option value="Cuido">Cuido a domicilio</option>
+                                <option value="Hospedaje">Hospedaje</option>
+
+                            </select>
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Teléfono principal </h3><br>
+                            <input class="input100 form-entry" type="text" size="40" name="primerApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+
+                        <div class="wrap-input100 validate-input">
+                            <h3 style="font-size: 20px;">Teléfono secundario</h3><br>
+                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div><br>
+                <h3 style="font-size: 20px;">Cargar documento oficial</h3><br>        
+                <div class="subida-formulario">
+                    <img class="anuncio-img" src="@Url.Content("~/images/subir.svg")" />
+                </div>
+
+                        <button style="align-self: center;" class="btn-accept">Enviar solicitud</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

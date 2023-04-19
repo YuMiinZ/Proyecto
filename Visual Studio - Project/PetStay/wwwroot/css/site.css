@@ -108,9 +108,8 @@ body {
 }
 
 .form-entry {
-  background-color: #0048791c;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 22px;
 }
 .cubi-nav-bar{
   background-color: #299CCB;
@@ -172,9 +171,33 @@ body {
   padding: 20px;
   border-radius: 10px 10px 10px 10px;
   background-color: white;
+  text-align: center;
+  border: 1px solid #000000;
   
 }
 .btn-masinfo:hover {
   color: #fff;
   background-color: #399197;
+}
+.container-subida {
+  width: 264px;
+  height: 150px;
+  border: 2px dashed #000000;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-around;
+  align-self: self-end;
+  border-radius: 10px;
+}
+.subida-formulario {
+  height: 150px;
+  border: 2px dashed #000000;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  margin-bottom: 40px;
+
 }
