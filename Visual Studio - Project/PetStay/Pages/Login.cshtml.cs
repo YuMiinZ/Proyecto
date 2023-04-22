@@ -52,6 +52,7 @@ namespace PetStay.Pages
             // Si la consulta devuelve un resultado mayor que cero, el usuario y la contraseña existen en la base de datos
             if (await reader.ReadAsync())
             {
+<<<<<<< HEAD
                 int idTipoUsuario = (int)reader["idTipoUsuario"];
 
                 if (idTipoUsuario == 2)
@@ -64,6 +65,10 @@ namespace PetStay.Pages
                     // Redirigir a la página de administrador
                     return RedirectToPage("/Admin");
                 }
+=======
+                // Iniciar sesión y redirigir al usuario a la página de inicio
+                return RedirectToPage("/User");
+>>>>>>> f3b6975e4233bcca68df468742408549cdd6b632
             }
 
             // Si la consulta no devuelve ningún resultado, mostrar un mensaje de error
