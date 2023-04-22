@@ -297,6 +297,7 @@ begin
 end//
 CALL crudUsuario(1, null, 'Juan', 'Perez', 'juan.perez@gmail.com', 'admin', 1);
 CALL crudUsuario(1, null, 'Melany', 'Salas', 'melany.salas@gmail.com', 'user', 2);
+CALL crudUsuario(1, null, 'Admin', 'Administrador', 'admin', 'admin', 1);
 
 #6. Solicitud
 #Opcion 1: Insertar
@@ -501,3 +502,23 @@ begin
     end if;
 end//
 CALL crudComentario(1, null, 'Este es un comentario de prueba', CURDATE(), 1, 1,1);
+
+delimiter //
+CREATE PROCEDURE `verificar_contrasenia`(
+  IN `password` VARCHAR(50),
+  IN `hash` VARCHAR(32),
+  OUT `verificacion` BOOL
+)
+BEGIN
+  DECLARE `pwd` VARCHAR(50);
+  SET `pwd` = MD5(`password`);
+  IF `pwd` = `hash` THEN
+    SET `verificacion` = TRUE;
+  ELSE
+    SET `verificacion` = FALSE;
+  END IF;
+END//
+CALL verificar_contrasenia('admin', '21232f297a57a5a743894a0e4a801fc3', @verificacion);
+SELECT @verificacion as Verificacion;
+
+SELECT correo, contrasenia, idTipoUsuario FROM Usuario WHERE correo = "admin" AND contrasenia = MD5("admin");
