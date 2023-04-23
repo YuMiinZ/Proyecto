@@ -14,6 +14,7 @@ namespace PetStay.Pages
     {
         [BindProperty]
         public Usuario Usuario { get; set; }
+        public string nombreUsuario { get; set; }
 
         public void OnGet()
         {
@@ -42,23 +43,23 @@ namespace PetStay.Pages
             var hashedPassword = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
 
             // Construir una consulta SQL para verificar si el usuario y la contraseña existen en la base de datos
-            var query = $"SELECT correo, contrasenia, idTipoUsuario FROM Usuario WHERE Usuario.correo = '{Usuario.Correo}' AND Usuario.contrasenia = '{hashedPassword}'";
+            var query = $"SELECT nombre, correo, contrasenia, idTipoUsuario FROM Usuario WHERE Usuario.correo = '{Usuario.Correo}' AND Usuario.contrasenia = '{hashedPassword}'";
 
             // Ejecutar la consulta
             await connection.OpenAsync();
             using var command = new MySqlCommand(query, connection);
             using var reader = await command.ExecuteReaderAsync();
-            Console.WriteLine(reader);
 
             // Si la consulta devuelve un resultado mayor que cero, el usuario y la contraseña existen en la base de datos
             if (await reader.ReadAsync())
             {
+                nombreUsuario = reader["nombre"].ToString();
                 int idTipoUsuario = (int)reader["idTipoUsuario"];
 
                 if (idTipoUsuario == 2)
                 {
                     // Redirigir a la página de usuario
-                    return RedirectToPage("/User");
+                    return RedirectToPage("/User", new { nombreUsuario });
                 }
                 else
                 {

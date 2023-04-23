@@ -4,101 +4,65 @@
     ViewData["Title"] = "User";
 }
 
-
 <div style="">
     <div>
-
-        <h1 style="margin-top: 2%; color:#004879">Nombre de usuario</h1>
-
+        <h1 style="margin-top: 2%; color:#004879">@Model.nombreUsuario</h1>
         <h2 style="margin-top: 2%; color:#004879">Publicaciones</h2>
         <div style="display: flex;justify-content: space-between;margin-top: 70px;">
             <select class="filter" name="info" id="filtro">
-
-                <option value="Informacion"> Informacion</option>
+                <option value="Informacion"> Información</option>
                 <option value="servicio">Servicios</option>
-
             </select>
             <a asp-page="/CrearPublicacion" class="btn-accept" type="submit">Crear publicación</a>
         </div>
-
-        <div class="anuncio-container">
-            <div class="anuncio-header">
-                <h3 style="color: white;margin-left: 17px;">Perro en adopción</h3>
-            </div>
-            <div style="display: flex; padding: 50px; justify-content: space-between;">
-                <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
-                <div class="info-container">
-                    
-                    <h4>Perro de raza pequeña.Desparasitado con vacunas al día</h4>
-                    <div>
-                        <div style="display: flex;">
-                            <h4>Publicado por: </h4>
-                            <h4 style="color:#004879; margin-left: 5px;">David Campos</h4>
+        @foreach (var publicacion in Model.Publicaciones)
+        {
+            <div class="anuncio-container">
+                <div class="anuncio-header">
+                    <h3 style="color: white;margin-left: 17px;">@publicacion.Titulo</h3>
+                </div>
+                <div style="display: flex; padding: 50px; justify-content: space-between;">
+                    <img class="anuncio-img" src="data:image;base64,@Convert.ToBase64String(publicacion.Imagen)" alt="Anuncios" style="max-width:100%;height:auto;margin-right:20px;" />
+                    <div class="info-container">
+                        <h4>@publicacion.Descripcion</h4>
+                        <div>
+                            <div style="display: flex;">
+                                <h4>Publicado por: </h4>
+                                <h4 style="color:#004879; margin-left: 5px;">@publicacion.Autor</h4>
+                            </div>
+                            <h4>Contacto: @publicacion.Contacto</h4>
                         </div>
-
-                        <h4>Contacto: (+506) 7894 6543</h4>
-
+                        <a asp-page="/Detalles" class="btn-masinfo">
+                            Más detalles
+                        </a>
                     </div>
-                    <a asp-page="/Detalles" class="btn-masinfo">
-                        Más detalles
-                    </a>
-
                 </div>
             </div>
+         }
+    <div class="anuncio-container">
+        <div class="anuncio-header">
+            <h3 style="color: white;margin-left: 17px;">Perro en adopción</h3>
         </div>
-                <div class="anuncio-container">
-            <div class="anuncio-header">
-                <h3 style="color: white;margin-left: 17px;">Perro en adopción</h3>
-            </div>
-            <div style="display: flex; padding: 50px; justify-content: space-between;">
-                <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
-                <div class="info-container">
-                    
-                    <h4>Perro de raza pequeña.Desparasitado con vacunas al día</h4>
-                    <div>
-                        <div style="display: flex;">
-                            <h4>Publicado por: </h4>
-                            <h4 style="color:#004879; margin-left: 5px;">David Campos</h4>
-                        </div>
+        <div style="display: flex; padding: 50px; justify-content: space-between;">
+            <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
+            <div class="info-container">
 
-                        <h4>Contacto: (+506) 7894 6543</h4>
-
+                <h4>Perro de raza pequeña.Desparasitado con vacunas al día</h4>
+                <div>
+                    <div style="display: flex;">
+                        <h4>Publicado por: </h4>
+                        <h4 style="color:#004879; margin-left: 5px;">David Campos</h4>
                     </div>
-                    <a asp-page="/Detalles" class="btn-masinfo">
-                        Más detalles
-                    </a>
+
+                    <h4>Contacto: (+506) 7894 6543</h4>
 
                 </div>
+                <a asp-page="/Detalles" class="btn-masinfo">
+                    Más detalles
+                </a>
+
             </div>
         </div>
-                <div class="anuncio-container">
-            <div class="anuncio-header">
-                <h3 style="color: white;margin-left: 17px;">Perro en adopción</h3>
-            </div>
-            <div style="display: flex; padding: 50px; justify-content: space-between;">
-                <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
-                <div class="info-container">
-                    
-                    <h4>Perro de raza pequeña.Desparasitado con vacunas al día</h4>
-                    <div>
-                        <div style="display: flex;">
-                            <h4>Publicado por: </h4>
-                            <h4 style="color:#004879; margin-left: 5px;">David Campos</h4>
-                        </div>
-
-                        <h4>Contacto: (+506) 7894 6543</h4>
-
-                    </div>
-                    <a asp-page="/Detalles" class="btn-masinfo">
-                        Más detalles
-                    </a>
-
-                </div>
-            </div>
-        </div>
-
-
     </div>
-
-
+    </div>
 </div>
