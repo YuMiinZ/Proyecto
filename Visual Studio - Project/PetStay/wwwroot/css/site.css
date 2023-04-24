@@ -159,10 +159,16 @@ body {
   align-items: center;
 
 }
+.anuncio-img {
+  border-radius: 10px;
+  width: 350px;
+  max-height: 300px;
+}
 
 .info-container {
   display: flex;
   flex-direction: column;
+  max-width: 560px;
   justify-content: space-between;
   
 }
