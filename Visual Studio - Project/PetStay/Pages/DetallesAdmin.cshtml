@@ -1,0 +1,89 @@
+@page
+@model PetStay.Pages.DetallesAdminModel
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "LayoutAdmin";
+
+}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100">
+            <span class="login100-form-logo">
+                <i class="zmdi zmdi-landscape"></i>
+            </span>
+
+            <title>Detalles</title>
+            <h1 style="color:#004879">Detalles de la publicación</h1>
+
+            <div class="cont-formulario">
+                <div class="info-container">
+
+                    <h2>Perro de raza mediana.</h2>
+                    <h4>Max es de raza mixta de 2 años de edad y busca un hogar amoroso. Él es de tamaño mediano, con pelaje marrón y blanco suave al tacto. Max es un perro muy enérgico y le encanta jugar, correr y hacer ejercicio. También es muy amigable y le encanta estar cerca de las personas. Está al día con sus vacunas y está castrado. </h3>
+                    <div>
+                        <div style="display: flex; margin-top: 40px">
+                            <h3>Publicado por: </h3>
+                            <h3 style="color:#004879; margin-left: 5px;">David Campos</h3>
+                        </div>
+
+                        <h3>Contacto: (+506) 7894 6543</h3>
+
+                    </div>
+
+
+                </div>
+                <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
+
+
+            </div>
+
+            <h2 style="margin-top: 40px;">Comentarios:</h2>
+
+            <div class="anuncio-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: #004879">Alberto</td>
+                            <td>"¡Me encanta este servicio de cuido de mascotas! Mi perro ha estado aquí varias veces y
+                                siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y
+                                seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y
+                                también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos
+                                y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo
+                                recomendaría a otros dueños de mascotas".</td>
+                            <td>
+                                <button style="background-color: #BF1C1C" class="btn-accept">Eliminar comentario</button>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="color: #004879">Gabriela</td>
+                            <td>"¡Mi gato recibió un excelente cuidado en este servicio de cuido de mascotas! El
+                                personal es cariñoso y dedicado, y se aseguraron de que mi gato se sintiera cómodo y
+                                seguro durante su estadía. Me gusta que ofrecen opciones de alojamiento para gatos con
+                                espacios limpios y privados. También aprecio que tengan personal capacitado en primeros
+                                auxilios para mascotas, lo que me da tranquilidad. Sin duda alguna, volveré a utilizar
+                                este servicio en el futuro".</td>
+                            <td>
+                                <button style="background-color: #BF1C1C" class="btn-accept">Eliminar comentario</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+            <div style="display: flex;justify-content: space-around;margin-top: 60px;">
+                <button style="background-color: #BF1C1C;padding: 45px;width: 250px;" class="btn-accept">Eliminar publicación</button>
+            </div>
+
+        </div>
+    </div>
+</div>

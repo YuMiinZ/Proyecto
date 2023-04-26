@@ -1,0 +1,48 @@
+@page
+@model PetStay.Pages.AdminModel
+@{
+    ViewData["Title"] = "Admin";
+    Layout = "LayoutAdmin";
+
+}
+
+
+<div style="">
+    <div>
+        <h1 style="margin-top: 2%; color:#004879">Administrador</h1>
+        <h2 style="margin-top: 2%; color:#004879">Publicaciones</h2>
+        <div style="display: flex;justify-content: space-between;margin-top: 70px;">
+            <select class="filter" placeholder="filtrar publicaciones" name="info" id="filtro">
+                <option hidden selected>Filtrar publicación</option>
+                <option value="Informacion"> Información</option>
+                <option value="servicio">Servicios</option>
+            </select>
+            
+        </div>
+    <div class="anuncio-container">
+        <div class="anuncio-header">
+            <h3 style="color: white;margin-left: 17px;">Perro en adopción</h3>
+        </div>
+        <div style="display: flex; padding: 50px; justify-content: space-between;">
+            <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
+            <div class="info-container">
+
+                <h4>Perro de raza pequeña.Desparasitado con vacunas al día</h4>
+                <div>
+                    <div style="display: flex;">
+                        <h4>Publicado por: </h4>
+                        <h4 style="color:#004879; margin-left: 5px;">David Campos</h4>
+                    </div>
+
+                    <h4>Contacto: (+506) 7894 6543</h4>
+
+                </div>
+                <a asp-page="/DetallesAdmin" class="btn-masinfo">
+                    Más detalles
+                </a>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

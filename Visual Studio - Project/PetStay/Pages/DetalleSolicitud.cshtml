@@ -1,0 +1,79 @@
+@page
+@model PetStay.Pages.DetalleSolicitudModel
+@{
+    ViewData["Title"] = "RegistroServicio";
+    Layout = "LayoutAdmin";
+
+}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100">
+            <form>
+                <span class="login100-form-logo">
+                    <i class="zmdi zmdi-landscape"></i>
+                </span>
+
+                <h1>Detalles de solicitud</h1>
+
+                <div class="cont-formulario">
+                    <div style="display: flex;flex-direction: column;">
+                        <div>
+                            <h3 style="font-size: 20px;">Nombre</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">Diego Herrera Díaz</h3>
+                        </div><br>
+                        <div>
+                            <h3 style="font-size: 20px;">Cédula</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">2365221</h3>
+                        </div><br>
+
+                        <div>
+                            <h3 style="font-size: 20px;">Provincia</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">San José</h3>
+
+                        </div><br>
+                        <div>
+                            <h3 style="font-size: 20px;">Cantón</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">San José</h3>
+
+                        </div><br>
+                        <div>
+                            <h3 style="font-size: 20px;">Distrito</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">Pavas</h3>
+
+                        </div>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <div class="wrap-input100 validate-input " data-validate="Nombre">
+                            <h3 style="font-size: 20px;">Tipo de servicio</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">Hospedaje</h3>
+                        </div><br>
+
+                        <div>
+                            <h3 style="font-size: 20px;">Teléfono principal </h3><br>
+                            <h3 style="font-size: 22px;color:#004879">78946537</h3>
+
+                        </div><br>
+
+                        <div>
+                            <h3 style="font-size: 20px;">Teléfono secundario</h3><br>
+                            <h3 style="font-size: 22px;color:#004879">78963554</h3>
+
+                        </div><br>
+                        <h3 style="font-size: 20px;">Documento oficial</h3><br>
+                        <div class="subida-formulario">
+                            <img src="@Url.Content("~/images/subir.svg")" />
+                        </div>
+
+
+                    </div>
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                    <button style="background-color: #BF1C1C;padding: 45px;width: 250px;" class="btn-accept">Rechazar</button>
+                    <button style="background-color: #08A318;padding: 45px;width: 250px;" class="btn-accept">Aceptar</button>
+                </div>
+                    
+            </form>
+        </div>
+    </div>
+</div>
