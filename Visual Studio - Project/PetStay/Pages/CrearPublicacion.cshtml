@@ -2,42 +2,98 @@
 @model PetStay.Pages.CrearPublicacionModel
 @{
     ViewData["Title"] = "CrearPublicacion";
+    string NombreUsuario = Model.NombreUsuario;
+    int IdUsuario = Model.IdUsuario;
 }
+<form method="post" onsubmit="return validarFormulario();" enctype="multipart/form-data">
+    <input type="hidden" name="NombreUsuario" value="@NombreUsuario" />
+    <input type="hidden" name="IdUsuario" value="@IdUsuario" />
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div>
+                <h1 style="color:#004879">Crear nueva publicación</h1>
 
-<div class="limiter">
-    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-        <div>
-
-
-            <title>Detalles</title>
-            <h1 style="color:#004879">Crear nueva publicación</h1>
-
-            <div class="cont-formulario">
-                <div class="info-container">
-                    <h2>Título</h2>
-                    <input style="width: 130%" class="form-entry" /><br>
-                    <h3>Descripción</h3>
-                    <textarea style="width: 185%;height: 150px;" class="form-entry"> </textarea><br>
-                    <h3>Contacto</h2>
-                    <input style="width: 130%" class="form-entry" /><br>
-                </div>
-                <div style="display: flex;flex-direction: column;justify-content: space-between;">
-                    <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-                        <select style="height: 50px;" class="filter" placeholder="filtrar publicaciones" name="info" id="filtro">
-                            <option hidden selected>Tipo de publicación</option>
-                            <option value="Informacion"> Información</option>
-                            <option value="servicio">Servicios</option>
-                        </select>
+                <div class="cont-formulario">
+                    <div class="info-container">
+                        <h2>Título</h2>
+                        <input asp-for="Anuncio.Titulo" style="width: 130%" class="form-entry" />
+                        <span asp-validation-for="Anuncio.Titulo" class="text-danger"></span>
+                        <h3>Descripción</h3>
+                        <textarea asp-for="Anuncio.Descripcion" style="width: 185%;height: 150px;" class="form-entry"> </textarea><br>
+                        <span asp-validation-for="Anuncio.Descripcion" class="text-danger"></span>
+                        <h3>Contacto</h3>
+                        <input asp-for="Anuncio.Contacto" style="width: 130%" class="form-entry" /><br>
+                        <span asp-validation-for="Anuncio.Contacto" class="text-danger"></span>
                     </div>
-                    <div class="container-subida">
-                        <img src="@Url.Content("~/images/subir.svg")" />
+                    <div style="display: flex;flex-direction: column;justify-content: space-between;">
+                        <div style="display: flex;justify-content: space-between;margin-top: 20px;">
+                            <select asp-for="Anuncio.TipoPublicacion" style="height: 50px;" class="filter" placeholder="filtrar publicaciones" name="info" id="filtro">
+                                <option hidden selected>Tipo de publicación</option>
+                                <option value="Informacion"> Información</option>
+                                <option value="servicio">Servicios</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="Anuncio.TipoPublicacion" class="text-danger"></span>
+                        <div class="container-subida">
+                            <img src="@Url.Content("~/images/subir.svg")" class="cursor-pointer" onclick="document.getElementById('file-upload').click();" />
+                        </div>
+                        <input asp-validation-for="Imagen" id="file-upload" type="file" accept="image/png,image/jpeg" name="imagen" style="display:none;">
+                        <span id="file-name"></span>
+                        <span asp-validation-for="Imagen" class="text-danger"></span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div style="display: flex;justify-content: flex-end;margin-top: 50px;">
-            <button class="btn-accept">Crear publicación</button>
-        </div>
+            <div style="display: flex;justify-content: flex-end;margin-top: 50px;">
+                <button class="btn-accept" name="onPostAsync">Crear publicación</button>
+            </div>
 
+        </div>
     </div>
-</div>
+</form>
+
+
+<script>
+    function validarFormulario() {
+        var titulo = document.getElementById("Anuncio_Titulo").value;
+        var descripcion = document.getElementById("Anuncio_Descripcion").value;
+        var contacto = document.getElementById("Anuncio_Contacto").value;
+        var tipoPublicacion = document.getElementById("tipoPublicacion").value;
+
+        if (titulo.trim() == "") {
+            alert("El campo Título es obligatorio");
+            return false;
+        }
+
+        if (descripcion.trim() == "") {
+            alert("El campo Descripción es obligatorio");
+            return false;
+        }
+
+        if (contacto.trim() == "") {
+            alert("El campo Contacto es obligatorio");
+            return false;
+        }
+
+        if (tipoPublicacion == "") {
+            alert("Debe seleccionar un tipo de publicación");
+            return false;
+        }
+
+        var imagen = document.getElementById("Imagen");
+
+        if (imagen.value != "") {
+            var extensionesPermitidas = /(.jpg|.jpeg|.png|.gif)$/i;
+            if (!extensionesPermitidas.exec(imagen.value)) {
+                alert("Por favor, suba una imagen en formato .jpg, .jpeg, .png o .gif");
+                imagen.value = "";
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+</script>
+
+
+

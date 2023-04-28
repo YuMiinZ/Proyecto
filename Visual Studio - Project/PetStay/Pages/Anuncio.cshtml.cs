@@ -9,7 +9,7 @@ namespace PetStay.Pages
 {
     public class AnuncioModel : PageModel
     {
-        public List<Anuncio> Anuncios { get; set; }
+        public List<AnuncioPrueba> AnuncioPrueba { get; set; }
 
         public void OnGet()
         {
@@ -18,7 +18,7 @@ namespace PetStay.Pages
         }
     }
 
-    public class Anuncio
+    public class AnuncioPrueba
     {
         public string TipoAnuncio { get; set; }
         public string UrlImagen { get; set; }

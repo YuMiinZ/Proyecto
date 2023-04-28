@@ -6,12 +6,19 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Configuration;
 
 
 namespace PetStay.Pages
 {
     public class LoginModel : PageModel
     {
+        private readonly IConfiguration _configuration;
+        public LoginModel(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [BindProperty]
         public Usuario Usuario { get; set; }
         public string nombreUsuario { get; set; }
@@ -33,7 +40,9 @@ namespace PetStay.Pages
             // y si la contraseña ingresada coincide con la contraseña en la BD encriptada con MD5
 
             // Establecer una conexión con la base de datos
-            using var connection = new MySqlConnection("Server=localhost;Port=3306;Database=PetStay;Uid=root;Pwd=1234;");
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+            using var connection = new MySqlConnection(connectionString);
+
 
             // Encriptar la contraseña ingresada por el usuario con MD5
 
@@ -43,7 +52,8 @@ namespace PetStay.Pages
             var hashedPassword = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
 
             // Construir una consulta SQL para verificar si el usuario y la contraseña existen en la base de datos
-            var query = $"SELECT nombre, correo, contrasenia, idTipoUsuario FROM Usuario WHERE Usuario.correo = '{Usuario.Correo}' AND Usuario.contrasenia = '{hashedPassword}'";
+            var query = $"SELECT idUsuario, nombre, correo, contrasenia, idTipoUsuario FROM Usuario WHERE Usuario.correo = '{Usuario.Correo}' " +
+                $"AND Usuario.contrasenia = '{hashedPassword}'";
 
             // Ejecutar la consulta
             await connection.OpenAsync();
@@ -55,11 +65,11 @@ namespace PetStay.Pages
             {
                 nombreUsuario = reader["nombre"].ToString();
                 int idTipoUsuario = (int)reader["idTipoUsuario"];
-
+                int idUsuario = (int)reader["idUsuario"];
                 if (idTipoUsuario == 2)
                 {
                     // Redirigir a la página de usuario
-                    return RedirectToPage("/User", new { nombreUsuario });
+                    return RedirectToPage("/User", new { nombreUsuario, idUsuario });
                 }
                 else
                 {

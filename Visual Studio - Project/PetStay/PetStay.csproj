@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.32.1" />
+    <Compile Remove="Pages\Clients\**" />
+    <Content Remove="Pages\Clients\**" />
+    <EmbeddedResource Remove="Pages\Clients\**" />
+    <None Remove="Pages\Clients\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
     <PackageReference Include="MySqlConnector" Version="2.2.5" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>

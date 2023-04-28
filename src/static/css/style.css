@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,500,600");
+
+.iniciar-sesion{
+    align-items: center;
+    background-color: #e6f4f1;
+    border: 1px none;
+    display: flex;
+    flex-direction: column;
+    gap: 98px;
+    height: 867.22px;
+    width: 1561px;
+}
+
+.flex-row{
+    align-items: flex-end;
+    display: flex;
+    gap: 267px;
+    height: 583px;
+    margin-right: 120px;
+    min-width: 1275px;
+}
+
+.inicio-de-sesin{
+    position: absolute;
+    width: 531px;
+    height: 92px;
+    left: 813px;
+    top: 203px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 78px;
+
+    color: #004879;
+}
+
+.mostrar-contrasenia {
+    background-color: transparent;
+    position: absolute;
+    width: 27.99px;
+    height: 17.4px;
+    left: 1263.9px;
+    top: 535.98px;
+    z-index: 2;
+    border: none;
+}
+
+.x309113-1 {
+    height: 419px;
+    margin-bottom: 24.64px;
+    width: 463px;
+}
+
+.correo-electronico{
+    position: absolute;
+    width: 491px;
+    height: 31px;
+    left: 813px;
+    top: 348px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 34px;
+
+    color: #000000;
+}
+
+.contrasenia{
+    position: absolute;
+    width: 354.06px;
+    height: 30.26px;
+    left: 813px;
+    top: 468.64px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 34px;
+
+    color: #000000;
+}
+
+.boton-iniciar-sesion{
+    position: absolute;
+    width: 406.27px;
+    height: 65.82px;
+    left: 855.37px;
+    top: 623.73px;
+
+    background: #004879;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 49px;
+    text-align: center;
+    color:white
+}
+
+.boton-registrar-usuario{
+    position: absolute;
+    width: 406.27px;
+    height: 65.82px;
+    left: 855.37px;
+    top: 719.82px;
+
+    background: #004879;
+    border-radius: 20px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 49px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.form-input[type="email"] {
+    position: absolute;
+    width: 491px;
+    height: 31.02px;
+    left: 813px;
+    top: 393.74px;
+
+    background: #D9D9D9;
+    border-radius: 20px;
+}
+
+.form-input[type="password"] {
+    position: absolute;
+    width: 491px;
+    height: 31.02px;
+    left: 813px;
+    top: 529.17px;
+    background: #D9D9D9;
+    border-radius: 20px;
+}
+
+.form-input[type="text"] {
+    position: absolute;
+    width: 491px;
+    height: 31.02px;
+    left: 813px;
+    top: 529.17px;
+    background: #D9D9D9;
+    border-radius: 20px;
+  }

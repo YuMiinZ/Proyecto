@@ -69,7 +69,7 @@ create table Anuncio(
 
 create table Comentario(
 	idComentario int not null primary key auto_increment,
-    texto varchar(200) not null,
+    texto varchar(65535) not null,
     fecha date not null,
     idUsuario int not null,
     idAnuncio int not null,
@@ -202,7 +202,7 @@ begin
 		signal sqlstate '45000' set message_text = 'Opción inválida.';
     end if;
 end//
-CALL crudTipoAnuncio(1, null, 'Adopción');
+CALL crudTipoAnuncio(1, null, 'Información');
 CALL crudTipoAnuncio(1, null, 'Servicios');
 
 #4. TipoServicio
@@ -438,7 +438,8 @@ begin
         signal sqlstate '45000' set message_text = 'Opcion invalida.';
     end if;
 end//
-CALL crudAnuncio(1, 1, 'Perrito en Adopción', 'Perro raza pequeña, desparacitado', '(+506) 7894 6543', NULL, 1, 1,1);
+CALL crudAnuncio(1, 1, 'Perrito en Adopción', 'Perro raza pequeña, desparacitado', '(+506) 7894 6543', 
+LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/prueba.png'), 1, 1,1);
 
 #8. Comentario
 #Opcion 1: Insertar
@@ -446,7 +447,7 @@ CALL crudAnuncio(1, 1, 'Perrito en Adopción', 'Perro raza pequeña, desparacita
 #Opcion 3: Mostrar todo
 #Opcion 4: Eliminar
 delimiter //
-create procedure crudComentario(in opcion int, in idComentario int, in texto varchar(200), in fecha date, 
+create procedure crudComentario(in opcion int, in idComentario int, in texto text, in fecha date, 
 in idUsuario int, in idAnuncio int, in idEstado int)
 begin
     if(opcion is null) then
@@ -501,7 +502,12 @@ begin
         signal sqlstate '45000' set message_text = 'Opcion invalida.';
     end if;
 end//
-CALL crudComentario(1, null, 'Este es un comentario de prueba', CURDATE(), 1, 1,1);
+CALL crudComentario(1, null, '"¡Me encanta este servicio de cuido de mascotas! 
+Mi perro ha estado aquí varias veces y siempre ha sido bien cuidado. 
+El personal es amable y atento, y el lugar está limpio y seguro. Me gusta que 
+ofrecen opciones de alojamiento para perros pequeños y grandes, y también tienen áreas de juego al aire libre.
+ Además, me mantienen actualizado con fotos y mensajes, lo que me hace sentir tranquilo mientras estoy fuera.
+ Definitivamente lo recomendaría a otros dueños de mascotas".', CURDATE(), 1, 1,1);
 
 delimiter //
 CREATE PROCEDURE `verificar_contrasenia`(
@@ -520,5 +526,16 @@ BEGIN
 END//
 CALL verificar_contrasenia('admin', '21232f297a57a5a743894a0e4a801fc3', @verificacion);
 SELECT @verificacion as Verificacion;
-
+use petstay;
 select * from Anuncio;
+select * from Usuario;
+select * from Comentario
+DESCRIBE Comentario;
+
+ALTER TABLE Comentario MODIFY COLUMN texto TEXT NOT NULL;
+CALL crudComentario(1, null, '¡Me encanta este servicio de cuido de mascotas!  Mi perro ha estado aquí varias veces y siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo recomendaría a otros dueños de mascotas.', CURDATE(), 1, 1,1);
+INSERT INTO Comentario (idUsuario, idAnuncio, texto, fecha, idEstado)
+VALUES (1, 1, '¡Me encanta este servicio de cuido de mascotas! Mi perro ha estado aquí varias veces y siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo recomendaría a otros dueños de mascotas.', CURDATE(), 1);
+
+INSERT INTO Comentario (idUsuario, idAnuncio, texto, fecha, idEstado)
+VALUES (3, 1, '¡Mi gato recibió un excelente cuidado en este servicio de cuido de mascotas! El personal es cariñoso y dedicado, y se aseguraron de que mi gato se sintiera cómodo y seguro durante su estadía. Me gusta que ofrecen opciones de alojamiento para gatos con espacios limpios y privados. También aprecio que tengan personal capacitado en primeros auxilios para mascotas, lo que me da tranquilidad. Sin duda alguna, volveré a utilizar este servicio en el futuro.', CURDATE(), 1);

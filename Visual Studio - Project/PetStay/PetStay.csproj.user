@@ -7,5 +7,6 @@
     <ActiveDebugProfile>PetStay</ActiveDebugProfile>
     <RazorPage_SelectedScaffolderID>RazorPageScaffolder</RazorPage_SelectedScaffolderID>
     <RazorPage_SelectedScaffolderCategoryPath>root/Common/RazorPage</RazorPage_SelectedScaffolderCategoryPath>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
 </Project>

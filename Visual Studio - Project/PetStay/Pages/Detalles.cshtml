@@ -2,6 +2,9 @@
 @model PetStay.Pages.DetallesModel
 @{
     ViewData["Title"] = "Detalles";
+    string NombreUsuario = Model.NombreUsuario;
+    int IdUsuario = Model.IdUsuario;
+    int IdPublicacion = Model.IdPublicacion;
 }
 
 <div class="limiter">
@@ -11,27 +14,25 @@
                 <i class="zmdi zmdi-landscape"></i>
             </span>
 
-            <title>Detalles</title>
             <h1 style="color:#004879">Detalles de la publicación</h1>
 
             <div class="cont-formulario">
                 <div class="info-container">
 
-                    <h2>Perro de raza mediana.</h2>
-                    <h4>Max es de raza mixta de 2 años de edad y busca un hogar amoroso. Él es de tamaño mediano, con pelaje marrón y blanco suave al tacto. Max es un perro muy enérgico y le encanta jugar, correr y hacer ejercicio. También es muy amigable y le encanta estar cerca de las personas. Está al día con sus vacunas y está castrado. </h3>
+                    <h2>@Model.Publicacion.Titulo</h2>
+                    <h4>@Model.Publicacion.Descripcion</h4>
                     <div>
                         <div style="display: flex; margin-top: 40px">
-                            <h3>Publicado por: </h3>
-                            <h3 style="color:#004879; margin-left: 5px;">David Campos</h3>
+                            <h3>Publicado por:</h3>
+                            <h3 style="color:#004879; margin-left: 5px;">@Model.Publicacion.Autor</h3>
                         </div>
 
-                        <h3>Contacto: (+506) 7894 6543</h3>
-
+                        <h3>Contacto: @Model.Publicacion.Contacto</h3>
                     </div>
 
 
                 </div>
-                <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
+                <img class="anuncio-img" src="data:image;base64,@Convert.ToBase64String(@Model.Publicacion.Imagen)" />
 
 
             </div>
@@ -41,39 +42,30 @@
                 <table class="table">
                     <thead>
                         <tr>
-
+                            <th>Autor</th>
+                            <th>Comentario</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="color: #004879">Alberto</td>
-                            <td>"¡Me encanta este servicio de cuido de mascotas! Mi perro ha estado aquí varias veces y
-                                siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y
-                                seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y
-                                también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos
-                                y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo
-                                recomendaría a otros dueños de mascotas".</td>
-
-                        </tr>
-                        <tr>
-                            <td style="color: #004879">Gabriela</td>
-                            <td>"¡Mi gato recibió un excelente cuidado en este servicio de cuido de mascotas! El
-                                personal es cariñoso y dedicado, y se aseguraron de que mi gato se sintiera cómodo y
-                                seguro durante su estadía. Me gusta que ofrecen opciones de alojamiento para gatos con
-                                espacios limpios y privados. También aprecio que tengan personal capacitado en primeros
-                                auxilios para mascotas, lo que me da tranquilidad. Sin duda alguna, volveré a utilizar
-                                este servicio en el futuro".</td>
-                        </tr>
-
+                        @foreach (var comentario in Model.Comentarios)
+                        {
+                            <tr>
+                                <td style="color: #004879">@comentario.Autor</td>
+                                <td>@comentario.DetalleComentario</td>
+                            </tr>
+                        }
                     </tbody>
-
                 </table>
-                <div style="display: flex;border-top: 1px solid #dee2e6; justify-content: space-between;">
-                    <input style=" width: 100%;height: 90px;border-radius: 0 0 0 10px;"></input>
-
-                    <button style="border-radius: 0px 0px 10px 0px;" class="btn-accept">Comentar</button>
-                </div>
-
+                <form method="post" id="comment-form">
+                    <input type="hidden" name="NombreUsuario" value="@NombreUsuario" />
+                    <input type="hidden" name="IdUsuario" value="@IdUsuario" />
+                    <input type="hidden" name="IdPublicacion" value="@IdPublicacion" />
+                    <div style="display: flex;border-top: 1px solid #dee2e6; justify-content: space-between;">
+                        <textarea id="comentario" asp-for="comentario" style=" width: 100%;height: 90px;border-radius: 0 0 0 10px;"></textarea>
+                        <span asp-validation-for="comentario" class="text-danger"></span>
+                        <button type="submit" id="boton-comentar" style="border-radius: 0px 0px 10px 0px;" class="btn-accept" asp-page-handler="Comentar">Comentar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

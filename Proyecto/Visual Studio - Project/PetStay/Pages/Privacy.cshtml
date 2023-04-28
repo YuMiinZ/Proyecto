@@ -1,0 +1,164 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+
+<div class="add-container">
+    <div class="anuncio-header">
+        <span class="anuncio-type">Anuncio</span>
+    </div>
+    <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" alt="Anuncios" />
+    <div class="anuncio-details">
+        <div class="anuncio-title">Perro en adopción</div>
+        <div class="anuncio-description">Perro de raza pequeña, desparasitado</div>
+        <div class="anuncio-published-by">Publicado por: Juan Perez</div>
+        <div class="anuncio-button">
+            <a href="Model.UrlDetalles">Más detalles</a>
+        </div>
+        <div class="anuncio-contact">Contacto: (+506)8491 6230</div>
+    </div>
+</div>
+<div class="add-container">
+    <div class="anuncio-header">
+        <span class="anuncio-type">Anuncio</span>
+    </div>
+    <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" alt="Anuncios" />
+    <div class="anuncio-details">
+        <div class="anuncio-title">Perro en adopción</div>
+        <div class="anuncio-description">Perro de raza pequeña, desparasitado</div>
+        <div class="anuncio-published-by">Publicado por: Juan Perez</div>
+        <div class="anuncio-button">
+            <a href="Model.UrlDetalles">Más detalles</a>
+        </div>
+        <div class="anuncio-contact">Contacto: (+506)8491 6230</div>
+    </div>
+</div>
+<style>
+
+    .add-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 20px auto;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        box-sizing: border-box;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        background: #FFFFFF;
+        height: 200px;
+    }
+
+    .anuncio-header {
+        position: absolute;
+        width: 100%;
+        height: 60px;
+        top: 0;
+        left: 0;
+        background: #08A318;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .anuncio-type {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        color: #FFFFFF;
+    }
+
+    .anuncio-img {
+        position: relative;
+        top: 75px;
+        width: 130px;
+        height: 105px;
+        left: 9px;
+    }
+
+    .anuncio-details {
+        position: absolute;
+        top: 20px;
+        left: 145px;
+        width: 60%;
+        padding: 15px 60px 0 60px;
+    }
+
+    .anuncio-title {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 29px;
+        margin-bottom: 10px;
+        left: 3px;
+        position: absolute;
+        top: 52px;
+    }
+
+    .anuncio-description {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 19px;
+        color: #000000;
+        margin-bottom: 10px;
+        top: 107px;
+        position: absolute;
+        left: 3px;
+        width: 330px;
+        height: 44px;
+    }
+
+    .anuncio-published-by {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 19px;
+        color: #000000;
+        margin-bottom: 10px;
+        position: absolute;
+        top: 142px;
+        left: 3px
+    }
+
+    .anuncio-contact {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 19px;
+        color: #000000;
+        margin-bottom: 10px;
+        position: absolute;
+        top: 142px;
+        right: -36px
+    }
+
+    .anuncio-button {
+        position: absolute;
+        top: 50px;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        width: 94px;
+        height: 29px;
+        right: -40px;
+    }
+
+        .anuncio-button a {
+            display: inline-block;
+            width: 90px;
+            height: 20px;
+            text-align: center;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+        }
+</style>

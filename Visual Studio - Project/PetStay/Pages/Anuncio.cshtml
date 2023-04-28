@@ -4,21 +4,21 @@
     ViewData["Title"] = "Anuncio";
 }
 
-@foreach (var anuncio in Model.Anuncios)
+@foreach (var anuncio in Model.AnuncioPrueba)
 {
     <div class="add-container">
         <div class="anuncio-header">
             <span class="anuncio-type">Anuncio</span>
         </div>
-        <img class="anuncio-img" src="@Url.Content(anuncio.UrlImagen)" alt="Anuncios" />
+        <img class="anuncio-img" src="" alt="Anuncios" />
         <div class="anuncio-details">
-            <div class="anuncio-title">@anuncio.Nombre</div>
-            <div class="anuncio-description">@anuncio.Descripcion</div>
-            <div class="anuncio-published-by">Publicado por: @anuncio.PublicadoPor</div>
+            <div class="anuncio-title"></div>
+            <div class="anuncio-description"></div>
+            <div class="anuncio-published-by">Publicado por: </div>
             <div class="anuncio-button">
-                <a href="@anuncio.UrlDetalles">Más detalles</a>
+                <a href="">Más detalles</a>
             </div>
-            <div class="anuncio-contact">Contacto: @anuncio.Contacto</div>
+            <div class="anuncio-contact">Contacto</div>
         </div>
     </div>
 }
