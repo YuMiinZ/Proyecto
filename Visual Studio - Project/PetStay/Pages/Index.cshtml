@@ -1,32 +1,57 @@
 ﻿@page
-@model IndexModel
+@model PetStay.Pages.LoginModel
 @{
-    ViewData["Title"] = "Home page";
+    <meta charset="utf-8">
+    ViewData["Title"] = "Login";
+    Layout = "LayoutLogin";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Cédula</th>
-            <th>Tipo de servicio</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Nombre 1</td>
-            <td>Cédula 1</td>
-            <td>Tipo de servicio 1</td>
-            <td><button type="button" class="btn btn-primary">Más detalles</button></td>
-        </tr>
-        <tr>
-            <td>Nombre 2</td>
-            <td>Cédula 2</td>
-            <td>Tipo de servicio 2</td>
-            <td><button type="button" class="btn btn-primary">Más detalles</button></td>
-        </tr>
-        <!-- agregar más filas según sea necesario -->
-    </tbody>
-</table>
+<form method="post">
+    <div style="display: flex;justify-content: space-between;margin-top: 70px;">
+        <img class="anuncio-img" src="~/images/petlogo.svg" />
+        <div class="box-credenciales">
 
+            <h1 style="margin-top: 2%; color:#004879">Inicio de sesión</h1>
+
+            <div style="margin-bottom: 2%;">
+                <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+                    <label for="correo" style="margin-bottom: 5px;">Dirección de correo electrónico:</label>
+                    <input id="correo" class="login-entry" asp-for="Usuario.Correo" required />
+                </div>
+                <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+                    <label for="contraseña" style="margin-bottom: 5px;">Contraseña:</label>
+                    <input id="contraseña" type="password" class="login-entry" asp-for="Usuario.Contraseña" required />
+                </div>
+            </div>
+
+            <a asp-page="/RecuperarContrasena" style="margin-bottom: 25px;font-size: 20px; color: #004879">¿Olvidó la contraseña?</a>
+
+            <button type="submit" class="btn-accept" asp-page-handler="Login">Iniciar sesión</button>
+            <a style="margin-top: 30px;font-size: 20px; color: #004879" asp-page="/Registro">Registrar nuevo usuario</a>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        // Mostrar mensaje de error si existe
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== "") {
+            // Crear un elemento div con el mensaje de error
+            var errorDiv = document.createElement("div");
+            errorDiv.className = "alert alert-danger";
+            errorDiv.innerText = errorMessage;
+
+            // Insertar el elemento div en la página
+            var form = document.getElementsByTagName("form")[0];
+            form.insertBefore(errorDiv, form.firstChild);
+
+            // Restaurar los valores ingresados por el usuario
+            var correo = '@TempData["Correo"]';
+            var contraseña = '@TempData["Contraseña"]';
+            document.getElementById("Correo").value = correo;
+            document.getElementById("Contraseña").value = contraseña;
+        }
+    </script>
+}
