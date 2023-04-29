@@ -3,30 +3,60 @@
 @{
     ViewData["Title"] = "Login";
     Layout = "LayoutLogin";
-
 }
 
 
 <div style="display: flex;justify-content: space-between;margin-top: 70px;">
-            <img class="anuncio-img" src="~/images/petlogo.svg"/>
-            <div class="box-credenciales">
+    <img class="anuncio-img" src="~/images/petlogo.svg" />
+    <div class="box-credenciales">
 
-                <h1 style="margin-top: 2%; color:#004879">Recuperación de contraseña</h1>
-                
-                <div style="margin-bottom: 2%;">
-                    <h3 style="margin-top: 10%;">Nombre asociado</h3>
+        <h1 style="margin-top: 2%; color:#004879">Recuperación de contraseña</h1>
+        <form asp-page-handler="OnPost">
+            <div style="margin-bottom: 2%;">
+                <h3 style="margin-top: 10%;">Dirección de correo electrónico</h3>
+                <input id="correo" name="Correo" class="form-entry" required />
 
-                    <input class="login-entry"/><br>
-                    <h3 style="margin-top: 10%;">Dirección de correo electrónico</h3>
+                <h3 style="margin-top: 10%;">Nueva Contraseña</h3>
+                <input id="contraseña" type="password" name="Contraseña" class="form-entry" required />
 
-                    <input class="login-entry"/>
-
-
-                </div>
-
-                <a asp-page="/User" style="margin-top: 45px;" class="btn-accept" type="submit">Recuperar contraseña</a>
 
             </div>
-
-
+            <button style="margin-top: 45px;" type="submit" class="btn-accept">Recuperar contraseña</button>
+        </form>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Mostrar mensaje de error si existe
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== "") {
+            // Crear un elemento div con el mensaje de error
+            var errorDiv = document.createElement("div");
+            errorDiv.className = "alert alert-danger";
+            errorDiv.innerText = errorMessage;
+
+            // Insertar el elemento div en la página
+            var form = document.getElementsByTagName("form")[0];
+            form.insertBefore(errorDiv, form.firstChild);
+
+            // Restaurar los valores ingresados por el usuario
+            var correo = '@TempData["Correo"]';
+            document.getElementById("Correo").value = correo;
+        }
+
+        // Mostrar mensaje de éxito si se ha modificado la contraseña correctamente
+        var exito = '@Request.Query["exito"]';
+        if (exito !== "") {
+            // Crear un elemento div con el mensaje de éxito
+            var exitoDiv = document.createElement("div");
+            exitoDiv.className = "alert alert-success";
+            exitoDiv.innerText = "Contraseña modificada con éxito.";
+
+            // Insertar el elemento div en la página
+            var form = document.getElementsByTagName("form")[0];
+            form.insertBefore(exitoDiv, form.firstChild);
+        }
+    </script>
+}
+
