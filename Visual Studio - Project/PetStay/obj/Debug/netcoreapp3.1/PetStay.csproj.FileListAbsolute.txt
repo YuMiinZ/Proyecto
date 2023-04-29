@@ -121,3 +121,4 @@ C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\V
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\Razor\Pages\Anuncio.cshtml.g.cs
+C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\PetStay.csproj.AssemblyReference.cache

@@ -7,12 +7,19 @@ using System.Security.Cryptography;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+
 
 namespace PetStay.Pages
 {
     public class RecuperarContrasenaModel : PageModel
     {
+        private readonly IConfiguration _configuration;
+        public RecuperarContrasenaModel(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [EmailAddress]
         public string Correo { get; set; }
         public void OnGet()
@@ -24,7 +31,7 @@ namespace PetStay.Pages
             if (ModelState.IsValid)
             {
                 // Establecer una conexión con la base de datos
-                string connectionString = "Server=localhost;Port=3306;Database=PetStay;Uid=root;Pwd=1234;";
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
                 using var connection = new MySqlConnection(connectionString);
 
                 // Construir una consulta SQL para verificar si el usuario existe en la base de datos

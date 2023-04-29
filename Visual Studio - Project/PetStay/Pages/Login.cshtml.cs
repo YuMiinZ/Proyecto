@@ -69,7 +69,7 @@ namespace PetStay.Pages
                 
                 int idTipoUsuario = (int)reader["idTipoUsuario"];
 
-                if (idTipoUsuario == 2)
+                if (idTipoUsuario != 1)
                 {
                     // Redirigir a la página de usuario
                     return RedirectToPage("/User");

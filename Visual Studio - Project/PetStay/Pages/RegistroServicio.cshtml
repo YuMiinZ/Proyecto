@@ -7,7 +7,7 @@
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <span class="login100-form-logo">
                     <i class="zmdi zmdi-landscape"></i>
                 </span>
@@ -21,37 +21,37 @@
                     <div style="display: flex;flex-direction: column;">
                         <div class="wrap-input100 validate-input " data-validate="Nombre">
                             <h3 style="font-size: 20px;">Nombre</h3><br>
-                            <input class="input100 form-entry" type="text" size="40" name="nombre">
+                            <input class="input100 form-entry" type="text" size="40" name="nombre" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
 
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Cédula</h3><br>
-                            <input class="input100 form-entry" type="text" size="40" name="primerApellido">
+                            <input class="input100 form-entry" type="text" size="40" name="cedula" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
 
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Provincia</h3><br>
-                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <input class=" input100 form-entry" type="text" size="40" name="provincia" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Cantón</h3><br>
-                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <input class=" input100 form-entry" type="text" size="40" name="canton" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Distrito</h3><br>
-                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <input class=" input100 form-entry" type="text" size="40" name="distrito" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
                     </div>
                     <div style="display: flex;flex-direction: column;">
                         <div class="wrap-input100 validate-input " data-validate="Nombre">
                             <h3 style="font-size: 20px;">Tipo de servicio</h3><br>
-                            <select class=" input100 form-entry" style="padding: 4px;width: 100%;" name="info" id="filtro">
-                                <option hidden selected>Tipo de Servicio</option>
+                            <select class=" input100 form-entry" style="padding: 4px;width: 100%;" name="info" id="filtro" required>
+                                <option hidden selected value="">Tipo de Servicio</option>
                                 <option value="Cuido">Cuido a domicilio</option>
                                 <option value="Hospedaje">Hospedaje</option>
 
@@ -61,21 +61,23 @@
 
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Teléfono principal </h3><br>
-                            <input class="input100 form-entry" type="text" size="40" name="primerApellido">
+                            <input class="input100 form-entry" type="text" size="40" name="telefonoPrincipal" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
 
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Teléfono secundario</h3><br>
-                            <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
+                            <input class=" input100 form-entry" type="text" size="40" name="telefonoSecundario" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
                         <h3 style="font-size: 20px;">Cargar documento oficial</h3><br>
                         <div class="subida-formulario">
                             <img src="@Url.Content("~/images/subir.svg")" />
                         </div>
+                        <input id="file-upload" type="file" accept="image/png,image/jpeg" name="imagen" style="color: transparent; position: relative; top:-24px" required>
+                        <span style="top: -50px;left: 158px;position: relative;" id="file-name"></span>
 
-                        <button style="align-self: center;" class="btn-accept">Enviar solicitud</button>
+                        <button style="align-self: center; position: relative; top: 15px;" class="btn-accept">Enviar solicitud</button>
 
                     </div>
                 </div>
@@ -86,5 +88,25 @@
 
 <script>
 
-   
+    const fileInput = document.getElementById("file-upload");
+    const fileName = document.getElementById("file-name");
+    let file = null;
+
+    fileInput.addEventListener("change", function () {
+        file = fileInput.files[0];
+
+        if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
+            fileName.textContent = "Imagen cargada: " + file.name;
+            fileName.style.color = "green";
+        } else if (file) {
+            fileName.textContent = "El archivo seleccionado no es una imagen válida";
+            fileName.style.color = "red";
+        } else if (!file && fileName.textContent) {
+            // Si no se selecciona una nueva imagen pero ya existe una imagen cargada,
+            // se mantiene el texto actual.
+            fileInput.value = null; // Limpiar el valor del input para que no se seleccione la imagen anterior al presionar Cancelar
+        } else {
+            fileName.textContent = "";
+        }
+    });
 </script>

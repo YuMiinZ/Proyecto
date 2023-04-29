@@ -9,12 +9,11 @@
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100">
-            <form action="completarRegistro" method="post" class="login100-form validate-form">
+            <form method="post" class="login100-form validate-form">
                 <span class="login100-form-logo">
                     <i class="zmdi zmdi-landscape"></i>
                 </span>
 
-                <title>Registro</title>
                 <h1 style="color:#004879">Registro de usuario </h1>
 
                 <h2>
@@ -43,12 +42,12 @@
                         </div><br>
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Contraseña:</h3><br>
-                            <input class=" input100 form-entry" type="text" size="40" name="contraseña" required>
+                            <input class=" input100 form-entry" type="password" size="40" name="contraseña" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
                         <div class="wrap-input100 validate-input">
                             <h3 style="font-size: 20px;">Confirmar contraseña:</h3><br>
-                            <input class=" input100 form-entry" type="text" size="40" name="contraseñaConfirmada" required>
+                            <input class=" input100 form-entry" type="password" size="40" name="contraseñaConfirmada" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
                         <button style="align-self: center;" class="btn-accept">Registrar usuario</button>
@@ -59,3 +58,40 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // Mostrar mensaje de error si existe
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== "") {
+            // Crear un elemento div con el mensaje de error
+            var errorDiv = document.createElement("div");
+            errorDiv.className = "alert alert-danger";
+            errorDiv.innerText = errorMessage;
+
+            // Insertar el elemento div en la página
+            var form = document.getElementsByTagName("form")[0];
+            form.insertBefore(errorDiv, form.firstChild);
+
+            // Restaurar los valores ingresados por el usuario
+            var correo = '@TempData["Correo"]';
+            var contraseña = '@TempData["Contraseña"]';
+            document.getElementById("Correo").value = correo;
+            document.getElementById("Contraseña").value = contraseña;
+        }
+
+        // Mostrar mensaje de éxito si existe
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage !== "") {
+            // Crear un elemento div con el mensaje de éxito
+            var successDiv = document.createElement("div");
+            successDiv.className = "alert alert-success";
+            successDiv.innerText = successMessage;
+
+            // Insertar el elemento div en la página
+            var form = document.getElementsByTagName("form")[0];
+            form.insertBefore(successDiv, form.firstChild);
+        }
+
+    </script>
+}

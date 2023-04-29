@@ -49,8 +49,10 @@ create table Solicitud(
     imgDocIdentificacion longblob not null,
     idTipoServicio int not null,
     idEstado int not null,
+    idUsuario int not null,
     foreign key (idEstado) references Estado (idEstado),
-    foreign key (idTipoServicio) references TipoServicio(idTipoServicio)
+    foreign key (idTipoServicio) references TipoServicio(idTipoServicio),
+    foreign key (idUsuario) references Usuario(idUsuario)
 );
 
 create table Anuncio(
@@ -163,7 +165,8 @@ begin
 end//
 call crudTipoUsuario(1, null, 'Administrador');
 call crudTipoUsuario(1, null, 'Usuario');
-
+call crudTipoUsuario(1, null, 'Usuario Servicio Cuido');
+call crudTipoUsuario(1, null, 'Usuario Servicio Hospedaje');
 
 #3. TipoAnuncio
 #Opcion 1: Insertar
@@ -535,7 +538,7 @@ DESCRIBE Comentario;
 ALTER TABLE Comentario MODIFY COLUMN texto TEXT NOT NULL;
 CALL crudComentario(1, null, '¡Me encanta este servicio de cuido de mascotas!  Mi perro ha estado aquí varias veces y siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo recomendaría a otros dueños de mascotas.', CURDATE(), 1, 1,1);
 INSERT INTO Comentario (idUsuario, idAnuncio, texto, fecha, idEstado)
-VALUES (1, 1, '¡Me encanta este servicio de cuido de mascotas! Mi perro ha estado aquí varias veces y siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo recomendaría a otros dueños de mascotas.', CURDATE(), 1);
+VALUES (1, 5, '¡Me encanta este servicio de cuido de mascotas! Mi perro ha estado aquí varias veces y siempre ha sido bien cuidado. El personal es amable y atento, y el lugar está limpio y seguro. Me gusta que ofrecen opciones de alojamiento para perros pequeños y grandes, y también tienen áreas de juego al aire libre. Además, me mantienen actualizado con fotos y mensajes, lo que me hace sentir tranquilo mientras estoy fuera. Definitivamente lo recomendaría a otros dueños de mascotas.', CURDATE(), 1);
 
 INSERT INTO Comentario (idUsuario, idAnuncio, texto, fecha, idEstado)
-VALUES (3, 1, '¡Mi gato recibió un excelente cuidado en este servicio de cuido de mascotas! El personal es cariñoso y dedicado, y se aseguraron de que mi gato se sintiera cómodo y seguro durante su estadía. Me gusta que ofrecen opciones de alojamiento para gatos con espacios limpios y privados. También aprecio que tengan personal capacitado en primeros auxilios para mascotas, lo que me da tranquilidad. Sin duda alguna, volveré a utilizar este servicio en el futuro.', CURDATE(), 1);
+VALUES (3, 5, '¡Mi gato recibió un excelente cuidado en este servicio de cuido de mascotas! El personal es cariñoso y dedicado, y se aseguraron de que mi gato se sintiera cómodo y seguro durante su estadía. Me gusta que ofrecen opciones de alojamiento para gatos con espacios limpios y privados. También aprecio que tengan personal capacitado en primeros auxilios para mascotas, lo que me da tranquilidad. Sin duda alguna, volveré a utilizar este servicio en el futuro.', CURDATE(), 1);
