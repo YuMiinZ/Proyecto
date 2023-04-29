@@ -116,7 +116,6 @@ C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\V
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\Razor\Pages\DetalleSolicitud.cshtml.g.cs
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\Razor\Pages\GestSolicitudes.cshtml.g.cs
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\LayoutAdmin.cshtml.g.cs
-C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\obj\Debug\netcoreapp3.1\PetStay.csproj.AssemblyReference.cache
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
 C:\Users\yumii\OneDrive\Escritorio\TEC\I Semestre\Diseño de Software\Proyecto\Visual Studio - Project\PetStay\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+
 
 namespace PetStay.Pages
 {
@@ -30,11 +32,9 @@ namespace PetStay.Pages
         [Required(ErrorMessage = "El campo Comentario es requerido.")]
         public string comentario { get; set; }
 
-        public async Task OnGet(int idPublicacion, string nombreUsuario, int id)
+        public async Task OnGet(int idPublicacion)
         {
             IdPublicacion = idPublicacion;
-            NombreUsuario = nombreUsuario;
-            IdUsuario = id;
 
             using var connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection"));
             await connection.OpenAsync();
@@ -91,9 +91,9 @@ namespace PetStay.Pages
         public async Task<IActionResult> OnPostComentar()
         {
             var form = HttpContext.Request.Form;
-            string nombreUsuario = HttpContext.Request.Form["NombreUsuario"];
-            int idUsuario = int.Parse(HttpContext.Request.Form["IdUsuario"]);
+            
             int idPublicacion = int.Parse(HttpContext.Request.Form["IdPublicacion"]);
+
             // Validar el comentario
             if (string.IsNullOrEmpty(comentario))
             {
@@ -101,8 +101,6 @@ namespace PetStay.Pages
             }
             else
             {
-                
-
                 // Insertar el comentario en la base de datos
                 using var connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection"));
                 await connection.OpenAsync();
@@ -113,16 +111,16 @@ namespace PetStay.Pages
                 using var command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@texto", comentario);
                 command.Parameters.AddWithValue("@fecha", DateTime.Now);
-                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idUsuario", Int32.Parse(HttpContext.Session.GetString("idUsuario")));
                 command.Parameters.AddWithValue("@idAnuncio", idPublicacion);
                 command.Parameters.AddWithValue("@idEstado", 1);
-
                 await command.ExecuteNonQueryAsync();
 
-                return RedirectToPage("/Detalles", new { idPublicacion, nombreUsuario, idUsuario });
+                return RedirectToPage("/Detalles", new { idPublicacion });
             }
 
-            return RedirectToPage("/Detalles", new { idPublicacion, nombreUsuario, idUsuario });
+
+            return RedirectToPage("/Detalles", new { idPublicacion });
 
         }
 

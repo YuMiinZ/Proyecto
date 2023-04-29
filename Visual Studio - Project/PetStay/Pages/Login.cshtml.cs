@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 
 namespace PetStay.Pages
@@ -22,20 +23,18 @@ namespace PetStay.Pages
         [BindProperty]
         public Usuario Usuario { get; set; }
         public string nombreUsuario { get; set; }
+        public int idUsuario { get; set; }
 
         public void OnGet()
         {
             TempData["ErrorMessage"] = "";
+            HttpContext.Session.Remove("nombreUsuario");
+            HttpContext.Session.Remove("idUsuario");
         }
 
         public async Task<IActionResult> OnPostLoginAsync()
         {
 
-            if (string.IsNullOrEmpty(Usuario.Correo) || string.IsNullOrEmpty(Usuario.Contraseña))
-            {
-                ModelState.AddModelError("", "Debe ingresar su correo electrónico y su contraseña");
-                return Page();
-            }
             // Verificar si el usuario y la contraseña existen en la base de datos
             // y si la contraseña ingresada coincide con la contraseña en la BD encriptada con MD5
 
@@ -63,13 +62,17 @@ namespace PetStay.Pages
             // Si la consulta devuelve un resultado mayor que cero, el usuario y la contraseña existen en la base de datos
             if (await reader.ReadAsync())
             {
-                nombreUsuario = reader["nombre"].ToString();
+                HttpContext.Session.SetString("nombreUsuario", reader["nombre"].ToString());
+                HttpContext.Session.SetString("idUsuario",reader["idUsuario"].ToString());
+
+
+                
                 int idTipoUsuario = (int)reader["idTipoUsuario"];
-                int idUsuario = (int)reader["idUsuario"];
+
                 if (idTipoUsuario == 2)
                 {
                     // Redirigir a la página de usuario
-                    return RedirectToPage("/User", new { nombreUsuario, idUsuario });
+                    return RedirectToPage("/User");
                 }
                 else
                 {
@@ -91,10 +94,7 @@ namespace PetStay.Pages
 
     public class Usuario
     {
-        [Required(ErrorMessage = "Debe ingresar su correo electrónico")]
         public string Correo { get; set; }
-
-        [Required(ErrorMessage = "Debe ingresar su contraseña")]
         public string Contraseña { get; set; }
     }
 

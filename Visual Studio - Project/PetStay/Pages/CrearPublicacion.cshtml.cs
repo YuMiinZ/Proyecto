@@ -38,16 +38,11 @@ namespace PetStay.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-
             var form = HttpContext.Request.Form;
-            string nombreUsuario = HttpContext.Request.Form["NombreUsuario"];
-            int idUsuario = int.Parse(HttpContext.Request.Form["IdUsuario"]);
-
-
 
             if (!ModelState.IsValid)
             {
-                return RedirectToPage("/CrearPublicacion", new { nombreUsuario, idUsuario });
+                return RedirectToPage("/CrearPublicacion");
             }
 
             if (form.Files.GetFile("imagen") != null && form.Files.GetFile("imagen").Length > 0)
@@ -73,7 +68,7 @@ namespace PetStay.Pages
             command.Parameters.AddWithValue("@contacto", form["Anuncio.Contacto"]);
             command.Parameters.AddWithValue("@imagen", Anuncio.Imagen);
 
-            command.Parameters.AddWithValue("@usuarioId", idUsuario);
+            command.Parameters.AddWithValue("@usuarioId", Int32.Parse(HttpContext.Session.GetString("idUsuario")));
             command.Parameters.AddWithValue("@estadoId", 1);
 
             // Asignar el valor de tipoPublicacionId según la opción seleccionada
@@ -89,7 +84,7 @@ namespace PetStay.Pages
             command.ExecuteNonQuery();
 
             connection.Close();
-            return RedirectToPage("/User", new { nombreUsuario, idUsuario });
+            return RedirectToPage("/User");
         }
     }
 

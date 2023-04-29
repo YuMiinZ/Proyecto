@@ -7,12 +7,11 @@
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100">
-            <form >
+            <form method="post">
                 <span class="login100-form-logo">
                     <i class="zmdi zmdi-landscape"></i>
                 </span>
 
-                <title>Registro</title>
                 <h1 style="color:#004879">Registro de usuario </h1>
 
                 <h2>
@@ -52,7 +51,7 @@
                         <div class="wrap-input100 validate-input " data-validate="Nombre">
                             <h3 style="font-size: 20px;">Tipo de servicio</h3><br>
                             <select class=" input100 form-entry" style="padding: 4px;width: 100%;" name="info" id="filtro">
-
+                                <option hidden selected>Tipo de Servicio</option>
                                 <option value="Cuido">Cuido a domicilio</option>
                                 <option value="Hospedaje">Hospedaje</option>
 
@@ -71,10 +70,10 @@
                             <input class=" input100 form-entry" type="text" size="40" name="segundoApellido">
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div><br>
-                <h3 style="font-size: 20px;">Cargar documento oficial</h3><br>        
-                <div class="subida-formulario">
-                    <img src="@Url.Content("~/images/subir.svg")" />
-                </div>
+                        <h3 style="font-size: 20px;">Cargar documento oficial</h3><br>
+                        <div class="subida-formulario">
+                            <img src="@Url.Content("~/images/subir.svg")" />
+                        </div>
 
                         <button style="align-self: center;" class="btn-accept">Enviar solicitud</button>
 
@@ -84,3 +83,8 @@
         </div>
     </div>
 </div>
+
+<script>
+
+   
+</script>

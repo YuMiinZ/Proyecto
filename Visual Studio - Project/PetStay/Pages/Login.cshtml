@@ -16,13 +16,11 @@
             <div style="margin-bottom: 2%;">
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                     <label for="correo" style="margin-bottom: 5px;">Dirección de correo electrónico:</label>
-                    <input id="correo" class="login-entry" asp-for="Usuario.Correo" />
-                    <span asp-validation-for="Usuario.Correo" class="text-danger"></span>
+                    <input id="correo" class="login-entry" asp-for="Usuario.Correo" required />
                 </div>
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                     <label for="contraseña" style="margin-bottom: 5px;">Contraseña:</label>
-                    <input id="contraseña" type="password" class="login-entry" asp-for="Usuario.Contraseña" />
-                    <span asp-validation-for="Usuario.Contraseña" class="text-danger"></span>
+                    <input id="contraseña" type="password" class="login-entry" asp-for="Usuario.Contraseña" required />
                 </div>
             </div>
 
