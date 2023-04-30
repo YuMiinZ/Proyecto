@@ -1,9 +1,8 @@
 @page
+@using Microsoft.AspNetCore.Http
 @model PetStay.Pages.CrearPublicacionModel
 @{
     ViewData["Title"] = "CrearPublicacion";
-    string NombreUsuario = Model.NombreUsuario;
-    int IdUsuario = Model.IdUsuario;
 }
 <form method="post" enctype="multipart/form-data">
     <div class="limiter">
@@ -16,17 +15,25 @@
                         <h2>Título</h2>
                         <input style="width: 130%" class="form-entry" required /><br>
                         <h3>Descripción</h3>
-                        <textarea  style="width: 185%;height: 150px;" class="form-entry" required> </textarea><br>
+                        <textarea style="width: 185%;height: 150px;" class="form-entry" required> </textarea><br>
                         <h3>Contacto</h3>
                         <input style="width: 130%" class="form-entry" required /><br>
                     </div>
                     <div style="display: flex;flex-direction: column;justify-content: space-between;">
                         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
-                            <select  style="height: 50px;" class="filter" placeholder="filtrar publicaciones" name="info" id="filtro" required>
+                            <select name="TipoPublicacion" style="height: 50px;" class="filter" placeholder="filtrar publicaciones" id="filtro" required>
                                 <option hidden selected value="">Tipo de publicación</option>
-                                <option value="Informacion"> Información</option>
-                                <option value="servicio">Servicios</option>
+                                @if (HttpContext.Session.GetString("idTipoUsuario") == "2")
+                                {
+                                    <option value="Informacion">Información</option>
+                                }
+                                else
+                                {
+                                    <option value="Informacion">Información</option>
+                                    <option value="servicio">Servicios</option>
+                                }
                             </select>
+
                         </div>
                         <div class="container-subida">
                             <img src="@Url.Content("~/images/subir.svg")" />

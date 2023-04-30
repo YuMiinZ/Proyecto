@@ -14,35 +14,68 @@
         <div style="display: flex;justify-content: space-between;margin-top: 70px;">
             <select class="filter" placeholder="filtrar publicaciones" name="info" id="filtro">
                 <option hidden selected>Filtrar publicación</option>
-                <option value="Informacion"> Información</option>
-                <option value="servicio">Servicios</option>
+                <option value="Información"> Información</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Todos">Todos</option>
             </select>
-            
+
         </div>
-    <div class="anuncio-container">
-        <div class="anuncio-header">
-            <h3 style="color: white;margin-left: 17px;">Perro en adopción</h3>
-        </div>
-        <div style="display: flex; padding: 50px; justify-content: space-between;">
-            <img class="anuncio-img" src="@Url.Content("~/images/puppy.png")" />
-            <div class="info-container">
-
-                <h4>Perro de raza pequeña.Desparasitado con vacunas al día</h4>
-                <div>
-                    <div style="display: flex;">
-                        <h4>Publicado por: </h4>
-                        <h4 style="color:#004879; margin-left: 5px;">David Campos</h4>
-                    </div>
-
-                    <h4>Contacto: (+506) 7894 6543</h4>
-
+        @foreach (var publicacion in Model.Publicaciones)
+        {
+            <div class="anuncio-container publicacion-@publicacion.TipoPublicacion">
+                <div class="anuncio-header">
+                    <h3 style="color: white;margin-left: 17px;">@publicacion.TipoPublicacion</h3>
                 </div>
-                <a asp-page="/DetallesAdmin" class="btn-masinfo">
-                    Más detalles
-                </a>
-
+                <div style="display: flex; padding: 50px; justify-content: space-around;">
+                    <img class="anuncio-img" src="data:image;base64,@Convert.ToBase64String(publicacion.Imagen)" alt="Anuncios" />
+                    <div class="info-container">
+                        <h4>@publicacion.Titulo</h4>
+                        <div>
+                            <div style="display: flex;">
+                                <h4>Publicado por: </h4>
+                                <h4 style="color:#004879; margin-left: 5px;">@publicacion.Autor</h4>
+                            </div>
+                            <h4>Contacto: @publicacion.Contacto</h4>
+                        </div>
+                        <a asp-page="/DetallesAdmin" asp-route-idPublicacion="@publicacion.IdPublicacion" class="btn-masinfo">
+                            Más detalles
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
     </div>
 </div>
+
+<script>
+        function filtrarPublicaciones() {
+            var filtro = document.getElementById("filtro").value.toLowerCase();
+            var publicaciones = document.getElementsByClassName("anuncio-container");
+            for (var i = 0; i < publicaciones.length; i++) {
+                var tipoPublicacion = publicaciones[i].querySelector("h3").textContent.toLowerCase();
+                console.log("tipo de publicacion: " + tipoPublicacion + " filtro: " + filtro);
+
+                if (tipoPublicacion === filtro || filtro === "Información") {
+                    publicaciones[i].style.display = "block";
+                }
+                else if (tipoPublicacion === filtro || filtro === "Servicios") {
+                    publicaciones[i].style.display = "block";
+                }
+                else if (filtro == "todos") {
+                    publicaciones[i].style.display = "block";
+                }
+                else {
+                    publicaciones[i].style.display = "none";
+                }
+
+
+
+
+            }
+        }
+
+        document.getElementById("filtro").onchange = function () {
+            filtrarPublicaciones();
+        };
+
+</script>

@@ -26,8 +26,6 @@ namespace PetStay.Pages
         public int IdUsuario { get; set; }
         public void OnGet(string nombreUsuario, int id)
         {
-            NombreUsuario = nombreUsuario;
-            IdUsuario = id;
         }
 
         [BindProperty]

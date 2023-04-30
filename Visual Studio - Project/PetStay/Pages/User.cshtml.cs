@@ -19,13 +19,11 @@ namespace PetStay.Pages
             _configuration = configuration;
         }
         public string nombreUsuario { get; set; }
-        public string idUsuario { get; set; }
         public List<Publicacion> Publicaciones { get; set; }
 
         public async Task OnGetAsync()
         {
             nombreUsuario = HttpContext.Session.GetString("nombreUsuario");
-            idUsuario = HttpContext.Session.GetString("idUsuario");
 
             using var connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection"));
             await connection.OpenAsync();

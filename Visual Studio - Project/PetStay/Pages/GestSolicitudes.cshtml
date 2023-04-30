@@ -9,33 +9,34 @@
 
     <h1 style="margin-top: 2%; color:#004879;margin-bottom: 45px;">Administrar solicitudes de servicio</h1>
     <h2 style="margin-top: 2%; color:#004879;margin-bottom: 65px;">Lista de solicitudes recibidas:</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Cédula</th>
-                <th>Tipo de servicio</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Diego Herrera Díaz</td>
-                <td>2365221</td>
-                <td>Hospedaje</td>
-                <td><a asp-page="/DetalleSolicitud" class="btn btn-primary">Más detalles</a></td>
-            </tr>
-            <tr>
-                <td>Mariana Torres Moreno</td>
-                <td>4589632</td>
-                <td>Cuido a domicilio</td>
-                <td><a asp-page="/DetalleSolicitud" class="btn btn-primary">Más detalles</a></td>
-            </tr>
-            <!-- agregar más filas según sea necesario -->
-        </tbody>
-    </table>
+    <form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cédula</th>
+                    <th>Tipo de servicio</th>
+                    <th>Más detalles</th>
+                </tr>
+            </thead>
+            <tbody>
 
+                @foreach (var solicitud in Model.Solicitudes)
+                {
+                    <tr>
+                        <td>@solicitud.Nombre</td>
+                        <td>@solicitud.Cedula</td>
+                        <td>@solicitud.TipoServicio</td>
+                        <td>
+                            <a asp-page="/DetalleSolicitud" asp-route-idSolicitud="@solicitud.IdSolicitud" asp-route-idTipoServicio="@solicitud.IdTipoServicio" asp-route-idUsuario="@solicitud.IdUsuario" class="btn btn-primary">Más detalles</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
 </div>
+
 
 
 

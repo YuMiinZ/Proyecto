@@ -109,4 +109,30 @@
             fileName.textContent = "";
         }
     });
+
+    // Mostrar mensaje de éxito si existe
+    var successMessage = '@TempData["SuccessMessage"]';
+    if (successMessage !== "") {
+        // Crear un elemento div con el mensaje de éxito
+        var successDiv = document.createElement("div");
+        successDiv.className = "alert alert-success";
+        successDiv.innerText = successMessage;
+
+        // Insertar el elemento div en la página
+        var form = document.getElementsByTagName("form")[0];
+        form.insertBefore(successDiv, form.firstChild);
+    }
+
+    // Mostrar mensaje de error si existe
+    var errorMessage = '@TempData["ErrorMessage"]';
+    if (errorMessage !== "") {
+        // Crear un elemento div con el mensaje de error
+        var errorDiv = document.createElement("div");
+        errorDiv.className = "alert alert-danger";
+        errorDiv.innerText = errorMessage;
+
+        // Insertar el elemento div en la página
+        var form = document.getElementsByTagName("form")[0];
+        form.insertBefore(errorDiv, form.firstChild);
+    }
 </script>

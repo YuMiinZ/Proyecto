@@ -30,6 +30,7 @@ namespace PetStay.Pages
             TempData["ErrorMessage"] = "";
             HttpContext.Session.Remove("nombreUsuario");
             HttpContext.Session.Remove("idUsuario");
+            HttpContext.Session.Remove("idTipoUsuario");
         }
 
         public async Task<IActionResult> OnPostLoginAsync()
@@ -64,9 +65,8 @@ namespace PetStay.Pages
             {
                 HttpContext.Session.SetString("nombreUsuario", reader["nombre"].ToString());
                 HttpContext.Session.SetString("idUsuario",reader["idUsuario"].ToString());
+                HttpContext.Session.SetString("idTipoUsuario", reader["idTipoUsuario"].ToString());
 
-
-                
                 int idTipoUsuario = (int)reader["idTipoUsuario"];
 
                 if (idTipoUsuario != 1)

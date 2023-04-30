@@ -66,7 +66,7 @@ namespace PetStay.Pages
             query = "SELECT texto, Usuario.nombre from Comentario " +
                     "INNER JOIN Usuario ON Usuario.idUsuario = Comentario.idUsuario " +
                     "INNER JOIN Anuncio ON Anuncio.idAnuncio = Comentario.idAnuncio " +
-                    $"WHERE Anuncio.idEstado = 1 and Anuncio.idAnuncio = '{IdPublicacion}'";
+                    $"WHERE Comentario.idEstado = 1 and Anuncio.idAnuncio = '{IdPublicacion}'";
 
 
             using var command2 = new MySqlCommand(query, connection);

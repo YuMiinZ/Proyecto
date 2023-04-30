@@ -542,3 +542,5 @@ VALUES (1, 5, '¡Me encanta este servicio de cuido de mascotas! Mi perro ha esta
 
 INSERT INTO Comentario (idUsuario, idAnuncio, texto, fecha, idEstado)
 VALUES (3, 5, '¡Mi gato recibió un excelente cuidado en este servicio de cuido de mascotas! El personal es cariñoso y dedicado, y se aseguraron de que mi gato se sintiera cómodo y seguro durante su estadía. Me gusta que ofrecen opciones de alojamiento para gatos con espacios limpios y privados. También aprecio que tengan personal capacitado en primeros auxilios para mascotas, lo que me da tranquilidad. Sin duda alguna, volveré a utilizar este servicio en el futuro.', CURDATE(), 1);
+
+select * from Solicitud;
