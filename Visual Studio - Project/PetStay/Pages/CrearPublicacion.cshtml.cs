@@ -61,23 +61,16 @@ namespace PetStay.Pages
 
             using var command = new MySqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@titulo", form["Anuncio.Titulo"]);
-            command.Parameters.AddWithValue("@descripcion", form["Anuncio.Descripcion"]);
-            command.Parameters.AddWithValue("@contacto", form["Anuncio.Contacto"]);
+            command.Parameters.AddWithValue("@titulo", Request.Form["titulo"]);
+            command.Parameters.AddWithValue("@descripcion", Request.Form["descripcion"]);
+            command.Parameters.AddWithValue("@contacto", Request.Form["contacto"]);
             command.Parameters.AddWithValue("@imagen", Anuncio.Imagen);
 
             command.Parameters.AddWithValue("@usuarioId", Int32.Parse(HttpContext.Session.GetString("idUsuario")));
             command.Parameters.AddWithValue("@estadoId", 1);
+            command.Parameters.AddWithValue("@tipoPublicacionId", int.Parse(Request.Form["TipoPublicacion"]));
+            // Asignar el valor de tipoPublicacionId segï¿½n la opciï¿½n seleccionada
 
-            // Asignar el valor de tipoPublicacionId según la opción seleccionada
-            if (Request.Form["info"] == "Informacion")
-            {
-                command.Parameters.AddWithValue("@tipoPublicacionId", 1);
-            }
-            else if (Request.Form["info"] == "servicio")
-            {
-                command.Parameters.AddWithValue("@tipoPublicacionId", 2);
-            }
 
             command.ExecuteNonQuery();
 

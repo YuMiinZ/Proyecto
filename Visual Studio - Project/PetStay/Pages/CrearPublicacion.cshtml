@@ -13,24 +13,24 @@
                 <div class="cont-formulario">
                     <div class="info-container">
                         <h2>Título</h2>
-                        <input style="width: 130%" class="form-entry" required /><br>
+                        <input style="width: 130%" name="titulo" class="form-entry" required /><br>
                         <h3>Descripción</h3>
-                        <textarea style="width: 185%;height: 150px;" class="form-entry" required> </textarea><br>
+                        <textarea style="width: 185%;height: 150px;" name="descripcion" class="form-entry" required> </textarea><br>
                         <h3>Contacto</h3>
-                        <input style="width: 130%" class="form-entry" required /><br>
+                        <input style="width: 130%" name="contacto" class="form-entry" required /><br>
                     </div>
                     <div style="display: flex;flex-direction: column;justify-content: space-between;">
                         <div style="display: flex;justify-content: space-between;margin-top: 20px;">
                             <select name="TipoPublicacion" style="height: 50px;" class="filter" placeholder="filtrar publicaciones" id="filtro" required>
-                                <option hidden selected value="">Tipo de publicación</option>
+                                <option hidden selected name="tipo" value="">Tipo de publicación</option>
                                 @if (HttpContext.Session.GetString("idTipoUsuario") == "2")
                                 {
-                                    <option value="Informacion">Información</option>
+                                    <option value="1">Información</option>
                                 }
                                 else
                                 {
-                                    <option value="Informacion">Información</option>
-                                    <option value="servicio">Servicios</option>
+                                    <option value="1">Información</option>
+                                    <option value="2">Servicios</option>
                                 }
                             </select>
 
